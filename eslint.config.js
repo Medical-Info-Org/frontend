@@ -13,7 +13,6 @@ export default zayne({
 	react: {
 		nextjs: true,
 	},
-	type: "lib",
 	tailwindcss: true,
 	perfectionist: false,
 	typescript: {

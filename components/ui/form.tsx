@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { cnMerge } from "@/lib/utils/cn";
 import { toArray } from "@zayne-labs/toolkit";
