@@ -1,4 +1,4 @@
-import type { PolymorphicPropsWithRef } from "@zayne-labs/toolkit/react";
+import type { PolymorphicProps } from "@zayne-labs/toolkit/react";
 import { Slot } from "../common/Slot";
 
 type CardProps = {
@@ -7,7 +7,7 @@ type CardProps = {
 };
 
 function Card<TElement extends React.ElementType = "article">(
-	props: PolymorphicPropsWithRef<TElement, CardProps>
+	props: PolymorphicProps<TElement, CardProps>
 ) {
 	const { as: Element = "article", children, className = "" } = props;
 
@@ -15,7 +15,7 @@ function Card<TElement extends React.ElementType = "article">(
 }
 
 function CardHeader<TElement extends React.ElementType = "header">(
-	props: PolymorphicPropsWithRef<TElement, CardProps>
+	props: PolymorphicProps<TElement, CardProps>
 ) {
 	const { as: Element = "header", children, className } = props;
 
@@ -23,7 +23,7 @@ function CardHeader<TElement extends React.ElementType = "header">(
 }
 
 function CardContent<TElement extends React.ElementType = "div">(
-	props: PolymorphicPropsWithRef<TElement, CardProps>
+	props: PolymorphicProps<TElement, CardProps>
 ) {
 	const { as: Element = "div", children, className = "" } = props;
 

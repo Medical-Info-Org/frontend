@@ -18,6 +18,12 @@ const nextConfig = {
 			},
 			{
 				protocol: "https",
+				hostname: "odphp.health.gov",
+				port: "",
+				pathname: "/**",
+			},
+			{
+				protocol: "https",
 				hostname: "res.cloudinary.com",
 				port: "",
 				pathname: "/**",

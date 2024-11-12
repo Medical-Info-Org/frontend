@@ -1,7 +1,8 @@
 "use client";
 
 import { cnMerge } from "@/lib/utils/cn";
-import { handleFileValidation, useToggle } from "@zayne-labs/toolkit/react";
+import { handleFileValidation } from "@zayne-labs/toolkit";
+import { useToggle } from "@zayne-labs/toolkit/react";
 import { isFunction, isObject } from "@zayne-labs/toolkit/type-helpers";
 import type { ChangeEvent, DragEvent } from "react";
 import { toast } from "sonner";
@@ -11,7 +12,6 @@ type InputProps = Omit<React.ComponentPropsWithRef<"input">, "className" | "onDr
 	classNames?: { base?: string; input?: string; activeDragState?: string };
 };
 
-/* eslint-disable node/no-unsupported-features/node-builtins */
 export type DropZoneProps =
 	| {
 			existingFiles?: File[];
@@ -84,11 +84,11 @@ function DropZone(props: DropZoneProps & InputProps) {
 
 		const filesArray = isFunction(validator)
 			? validator(fileList, existingFiles)
-			: handleFileValidation(
-					fileList,
-					existingFiles,
-					isObject(validationRules) ? { ...validationRules, allowedFileTypes } : {}
-				);
+			: handleFileValidation({
+					newFileList: fileList,
+					existingFileArray: existingFiles,
+					validationRules: isObject(validationRules) ? { ...validationRules, allowedFileTypes } : {},
+				});
 
 		if (filesArray.length === 0) return;
 
