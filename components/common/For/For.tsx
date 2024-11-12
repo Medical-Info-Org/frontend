@@ -1,4 +1,4 @@
-import type { PolymorphicPropsWithRef } from "@zayne-labs/toolkit/react";
+import type { PolymorphicProps } from "@zayne-labs/toolkit/react";
 
 // prettier-ignore
 type RenderPropFn<TArrayItem> = (
@@ -44,7 +44,7 @@ function ForBase<TArrayItem>(props: ForProps<TArrayItem>) {
 }
 
 function ForList<TArrayItem, TElement extends React.ElementType = "ul">(
-	props: PolymorphicPropsWithRef<TElement, ForProps<TArrayItem> & { className?: string }>
+	props: PolymorphicProps<TElement, ForProps<TArrayItem> & { className?: string }>
 ) {
 	const { each, render, ref, children, as: ListContainer = "ul", className, ...restOfListProps } = props;
 

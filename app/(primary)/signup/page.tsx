@@ -25,7 +25,7 @@ function SignUpPage() {
 
 	const { control } = methods;
 
-	const type = useSearchParams().get("type") as "doctor" | "patient" | null;
+	const user = useSearchParams().get("user") as "doctor" | "patient" | null;
 
 	const router = useRouter();
 
@@ -148,7 +148,7 @@ function SignUpPage() {
 								/>
 							</Form.Item>
 
-							<Show when={type === "doctor"}>
+							<Show when={user === "doctor"}>
 								<Form.Item
 									control={control}
 									name="specialty"
@@ -210,7 +210,7 @@ function SignUpPage() {
 								</Form.Item>
 							</Show>
 
-							<Show when={type === "doctor"}>
+							<Show when={user === "doctor"}>
 								<Form.Item
 									control={control}
 									name="license"
@@ -273,7 +273,7 @@ function SignUpPage() {
 							</Form.Item>
 
 							<article className="flex flex-col items-center gap-[14px] md:mt-[14px] md:gap-7">
-								<Show when={type === "patient"}>
+								<Show when={user === "patient"}>
 									<p className="font-roboto text-medinfo-dark-4 md:text-[20px]">Or</p>
 
 									<div className="flex gap-8">
@@ -306,11 +306,11 @@ function SignUpPage() {
 									<NavLink
 										transitionType="Regular"
 										href={{
-											query: { type: type === "doctor" ? "patient" : "doctor" },
+											query: { type: user === "doctor" ? "patient" : "doctor" },
 										}}
 										className="text-medinfo-primary-main md:text-[20px]"
 									>
-										{type === "doctor" ? "Register as a patient" : "Register as a doctor"}
+										{user === "doctor" ? "Register as a patient" : "Register as a doctor"}
 									</NavLink>
 
 									<p className="md:hidden">
@@ -343,7 +343,7 @@ function SignUpPage() {
 						<NavLink
 							href={{
 								pathname: "/signin",
-								query: { type: type === "doctor" ? "doctor" : "patient" },
+								query: { type: user === "doctor" ? "doctor" : "patient" },
 							}}
 						>
 							Sign in
