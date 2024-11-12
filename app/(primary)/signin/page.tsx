@@ -17,7 +17,7 @@ function SignInPage() {
 
 	const { control } = methods;
 
-	const type = useSearchParams().get("type") as "doctor" | "patient" | null;
+	const user = useSearchParams().get("user") as "doctor" | "patient" | null;
 
 	return (
 		<Main className="md:w-full">
@@ -88,7 +88,7 @@ function SignInPage() {
 							</Form.Item>
 
 							<article className="flex flex-col items-center gap-[14px] md:mt-[14px] md:gap-7">
-								<Show when={type !== "doctor"}>
+								<Show when={user !== "doctor"}>
 									<p className="text-medinfo-dark-4 md:text-[20px]">Or</p>
 
 									<div className="flex gap-8">
@@ -113,19 +113,23 @@ function SignInPage() {
 								<div className="flex flex-col items-center gap-2">
 									<NavLink
 										transitionType="Regular"
+										// onClick={() => setSearchParams.triggerPopstate()}
 										href={{
-											query: { type: type === "doctor" ? "patient" : "doctor" },
+											query: { user: user === "doctor" ? "patient" : "doctor" },
 										}}
 										className="text-medinfo-primary-main md:text-[20px]"
 									>
-										{type === "doctor" ? "Sign in as a patient" : "Sign in as a doctor"}
+										{user === "doctor" ? "Sign in as a patient" : "Sign in as a doctor"}
 									</NavLink>
 
 									<p className="md:hidden">
 										Don't have an account?{" "}
 										<NavLink
 											transitionType="Regular"
-											href="/signup"
+											href={{
+												pathname: "/signin",
+												query: { user: user === "doctor" ? "doctor" : "patient" },
+											}}
 											className="text-medinfo-primary-main"
 										>
 											Sign up
@@ -149,7 +153,7 @@ function SignInPage() {
 						<NavLink
 							href={{
 								pathname: "/signup",
-								query: { type: type === "doctor" ? "doctor" : "patient" },
+								query: { type: user === "doctor" ? "doctor" : "patient" },
 							}}
 						>
 							Sign up
@@ -163,7 +167,6 @@ function SignInPage() {
 
 // == This wrapper is necessary due to vercel's stupid rule for using useSearchParams in a component
 // LINK - https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
-
 const WithSuspense = () => (
 	<Suspense>
 		<SignInPage />

@@ -17,7 +17,7 @@
 		"@radix-ui/react-dropdown-menu": "^2.1.2",
 		"@radix-ui/react-select": "^2.1.2",
 		"@zayne-labs/callapi": "1.0.0-rc.22",
-		"@zayne-labs/toolkit": "^0.6.4",
+		"@zayne-labs/toolkit": "^0.6.5",
 		"clsx": "^2.1.1",
 		"next": "^15.0.3",
 		"next-nprogress-bar": "^2.3.14",
