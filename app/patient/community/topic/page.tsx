@@ -10,7 +10,6 @@ import MessageImage from "@/public/assets/images/message.png";
 import ViewIcon from "@/components/icons/ViewIcon";
 
 function Page() {
-
 	const contactInfoMethods = useForm({
 		defaultValues: { text: "" },
 	});
