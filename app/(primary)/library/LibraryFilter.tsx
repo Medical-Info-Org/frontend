@@ -3,7 +3,7 @@
 import { IconBox, getElementList } from "@/components/common";
 import { SearchIcon } from "@/components/icons";
 import { DropdownMenu } from "@/components/ui";
-import type { DiseasesResponse } from "@/lib/types";
+import type { DiseasesResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin } from "@/lib/utils/cn";
 import { useState } from "react";
 import { DiseaseCard } from "./DiseaseCard";

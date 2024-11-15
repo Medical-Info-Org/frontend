@@ -76,6 +76,7 @@ function ProfilePage() {
 								md:text-base"
 						/>
 					</Form.Item>
+
 					<Form.Item name="gender" className="gap-1 font-roboto font-medium">
 						<Form.Label className="md:text-[20px]">Gender</Form.Label>
 
@@ -122,6 +123,7 @@ function ProfilePage() {
 							)}
 						/>
 					</Form.Item>
+
 					<Form.Item<typeof userIdentityMethods.control>
 						name="bio"
 						className="gap-1 font-roboto font-medium"

@@ -1,7 +1,7 @@
 import { Main } from "@/app/(primary)/_components";
 import { getElementList } from "@/components/common";
-import type { DiseasesResponse, SingleDisease } from "@/lib/types";
-import { callBackendApi } from "@/lib/utils/callBackendApi";
+import { callBackendApi } from "@/lib/api/callBackendApi";
+import type { DiseasesResponse, SingleDisease } from "@/lib/api/callBackendApi/types";
 import Image from "next/image";
 import { AlternateDiseaseCard, ScrollableAlternateDiseaseCards } from "../../DiseaseCard";
 

@@ -1,6 +1,6 @@
 import { NavLink } from "@/components/common";
-import type { DiseasesResponse } from "@/lib/types";
-import { callBackendApi } from "@/lib/utils/callBackendApi";
+import { callBackendApi } from "@/lib/api/callBackendApi";
+import type { DiseasesResponse } from "@/lib/api/callBackendApi/types";
 import { notFound } from "next/navigation";
 import { Main } from "../_components";
 import LibraryFilter from "./LibraryFilter";

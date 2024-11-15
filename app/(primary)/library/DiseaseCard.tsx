@@ -2,7 +2,7 @@
 
 import { IconBox, NavLink, getElementList } from "@/components/common";
 import { Button, Card } from "@/components/ui";
-import type { Disease, DiseasesResponse } from "@/lib/types";
+import type { Disease, DiseasesResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin, cnMerge } from "@/lib/utils/cn";
 import { tipPlaceHolder } from "@/public/assets/images/landing-page";
 import { useDragScroll } from "@zayne-labs/toolkit/react";

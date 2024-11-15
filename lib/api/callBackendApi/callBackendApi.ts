@@ -1,4 +1,5 @@
-import { callApi } from "@zayne-labs/callapi";
+import { createFetchClient } from "@zayne-labs/callapi";
+
 import { assertENV } from "@zayne-labs/toolkit/type-helpers";
 
 const BACKEND_URL = assertENV(
@@ -6,8 +7,10 @@ const BACKEND_URL = assertENV(
 	"NEXT_PUBLIC_BACKEND_URL env does not exist"
 );
 
-const callBackendApi = callApi.create({
+const callBackendApi = createFetchClient({
 	baseURL: BACKEND_URL,
+	dedupeStrategy: "cancel",
+	credentials: "include",
 });
 
 export { callBackendApi };
