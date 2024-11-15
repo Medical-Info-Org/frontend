@@ -1,7 +1,7 @@
 import { IconBox, NavLink, getElementList } from "@/components/common";
 import { Button } from "@/components/ui";
-import type { TipsResponse } from "@/lib/types";
-import { callBackendApi } from "@/lib/utils/callBackendApi";
+import { callBackendApi } from "@/lib/api/callBackendApi";
+import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin } from "@/lib/utils/cn";
 import { feature1, feature2, feature3, hero } from "@/public/assets/images/landing-page";
 import Image from "next/image";
@@ -90,7 +90,7 @@ async function HomePage() {
 						just the way it should be.
 					</p>
 					<Button asChild={true} className="mt-6">
-						<NavLink href={{ pathname: "/signup", query: { type: "patient" } }}>Join Us</NavLink>
+						<NavLink href={{ pathname: "/signup", query: { user: "patient" } }}>Join Us</NavLink>
 					</Button>
 				</div>
 

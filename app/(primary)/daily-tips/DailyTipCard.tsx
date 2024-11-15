@@ -2,7 +2,7 @@
 
 import { IconBox, NavLink, getElementList } from "@/components/common";
 import { Card } from "@/components/ui";
-import type { TipsResponse } from "@/lib/types";
+import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin, cnMerge } from "@/lib/utils/cn";
 import { useDragScroll } from "@zayne-labs/toolkit/react";
 import Image from "next/image";

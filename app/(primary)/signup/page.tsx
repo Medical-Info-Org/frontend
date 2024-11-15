@@ -1,10 +1,13 @@
 "use client";
 
 import { IconBox, Logo, NavLink, Show } from "@/components/common";
-import { Button, Form, Select } from "@/components/ui";
+import { Button, DatePicker, Form, Select } from "@/components/ui";
+import { callBackendApi } from "@/lib/api/callBackendApi";
+import type { SuccessContext } from "@zayne-labs/callapi";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { Main } from "../_components";
 import DropZoneInput from "./DropZoneInput";
 
@@ -12,8 +15,10 @@ function SignUpPage() {
 	const methods = useForm({
 		defaultValues: {
 			firstName: "",
+			dob: "",
 			lastName: "",
 			email: "",
+			gender: "",
 			password: "",
 			confirmPassword: "",
 			specialty: "",
@@ -28,6 +33,28 @@ function SignUpPage() {
 	const user = useSearchParams().get("user") as "doctor" | "patient" | null;
 
 	const router = useRouter();
+
+	const onSubmit = async (data: Record<string, unknown>) => {
+		const resolvedUser = user ?? "patient";
+
+		const formData = new FormData();
+
+		for (const [key, value] of Object.entries(data)) {
+			formData.set(key, value as string);
+		}
+
+		await callBackendApi("/:user/signup", {
+			method: "POST",
+			body: formData,
+			params: { user: resolvedUser },
+
+			onSuccess: (ctx: SuccessContext<{ message: string }>) => {
+				toast.success(ctx.data.message);
+
+				router.push("/signin");
+			},
+		});
+	};
 
 	return (
 		<Main className="md:w-full">
@@ -47,7 +74,11 @@ function SignUpPage() {
 							Join MedInfo Nigeria
 						</h1>
 
-						<Form.Root methods={methods} className="w-full gap-[14px]">
+						<Form.Root
+							methods={methods}
+							className="w-full gap-[14px]"
+							onSubmit={(event) => void methods.handleSubmit(onSubmit)(event)}
+						>
 							<Form.Item
 								control={control}
 								name="firstName"
@@ -92,6 +123,78 @@ function SignUpPage() {
 										className="placeholder:text-medinfo-dark-4 md:text-base"
 									/>
 								</Form.InputGroup>
+							</Form.Item>
+
+							<Form.Item control={control} name="email" className="gap-1 font-roboto font-medium">
+								<Form.Label className="md:text-[20px]">Email</Form.Label>
+
+								<Form.InputGroup
+									className="h-[48px] gap-4 rounded-[8px] border-[1.4px]
+										border-medinfo-primary-main px-4 py-3 md:h-[64px] md:py-5"
+								>
+									<Form.InputLeftItem className="size-5 md:size-6">
+										<IconBox icon="mynaui:envelope" className="size-full" />
+									</Form.InputLeftItem>
+
+									<Form.Input
+										type="email"
+										placeholder="enter email"
+										className="placeholder:text-medinfo-dark-4 md:text-base"
+									/>
+								</Form.InputGroup>
+							</Form.Item>
+
+							<Form.Item control={control} name="gender" className="gap-1 font-roboto font-medium">
+								<Form.Label className="md:text-[20px]">Gender</Form.Label>
+
+								<Form.Controller
+									render={({ field }) => (
+										<Select.Root
+											name={field.name}
+											value={field.value}
+											onValueChange={field.onChange}
+										>
+											<Select.Trigger
+												classNames={{
+													base: `group h-[48px] gap-2 rounded-[8px] border-[1.4px]
+													border-medinfo-primary-main px-4 font-medium
+													data-[placeholder]:text-medinfo-dark-4 md:h-[64px] md:text-base`,
+													icon: `text-medinfo-body-color group-data-[state=open]:rotate-180
+													md:size-6`,
+												}}
+											>
+												<Select.Value placeholder="select gender" />
+											</Select.Trigger>
+
+											<Select.Content
+												classNames={{
+													base: `border-[1.4px] border-medinfo-primary-main bg-white/90 p-0
+													backdrop-blur-lg`,
+													viewport: "gap-1",
+												}}
+											>
+												<Select.Item
+													value="Male"
+													className="h-[48px] bg-medinfo-light-3 font-medium
+														text-medinfo-dark-4 focus:bg-medinfo-light-1
+														focus:text-medinfo-body-color
+														data-[state=checked]:bg-medinfo-light-1 md:h-[64px] md:text-base"
+												>
+													Male
+												</Select.Item>
+												<Select.Item
+													value="Female"
+													className="h-[48px] bg-medinfo-light-3 font-medium
+														text-medinfo-dark-4 focus:bg-medinfo-light-1
+														focus:text-medinfo-body-color
+														data-[state=checked]:bg-medinfo-light-1 md:h-[64px] md:text-base"
+												>
+													Female
+												</Select.Item>
+											</Select.Content>
+										</Select.Root>
+									)}
+								/>
 							</Form.Item>
 
 							<Form.Item control={control} name="country" className="gap-1 font-roboto font-medium">
@@ -226,6 +329,25 @@ function SignUpPage() {
 								</Form.Item>
 							</Show>
 
+							<Show when={user === "patient"}>
+								<Form.Item control={control} name="dob" className="gap-1 font-roboto font-medium">
+									<Form.Label className="md:text-[20px]">Date of Birth</Form.Label>
+
+									<Form.Controller
+										render={({ field }) => (
+											<DatePicker
+												className="h-[48px] gap-4 rounded-[8px] border-[1.4px]
+													border-medinfo-primary-main px-4 py-3 text-[14px] md:h-[64px]
+													md:py-5 md:text-base"
+												dateValueString={field.value}
+												placeholder="DD/MM/YYYY"
+												onChange={field.onChange}
+											/>
+										)}
+									/>
+								</Form.Item>
+							</Show>
+
 							<Form.Item
 								control={control}
 								name="password"
@@ -306,7 +428,7 @@ function SignUpPage() {
 									<NavLink
 										transitionType="Regular"
 										href={{
-											query: { type: user === "doctor" ? "patient" : "doctor" },
+											query: { user: user === "doctor" ? "patient" : "doctor" },
 										}}
 										className="text-medinfo-primary-main md:text-[20px]"
 									>
@@ -317,7 +439,10 @@ function SignUpPage() {
 										Already have an account?{" "}
 										<NavLink
 											transitionType="Regular"
-											href="/signin"
+											href={{
+												pathname: "/signin",
+												query: { user: user === "doctor" ? "doctor" : "patient" },
+											}}
 											className="text-medinfo-primary-main"
 										>
 											Sign in
@@ -343,7 +468,7 @@ function SignUpPage() {
 						<NavLink
 							href={{
 								pathname: "/signin",
-								query: { type: user === "doctor" ? "doctor" : "patient" },
+								query: { user: user === "doctor" ? "doctor" : "patient" },
 							}}
 						>
 							Sign in

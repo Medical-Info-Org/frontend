@@ -10,9 +10,7 @@ export type SingleTip = {
 	}>;
 };
 
-export type TipsResponse = {
-	data: Array<{ id: string; title: string; imageUrl: string }>;
-};
+export type TipsResponse = { data: Array<{ id: string; title: string; imageUrl: string }> };
 
 export type Disease = {
 	Disease: string;

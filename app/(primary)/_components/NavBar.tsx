@@ -57,7 +57,7 @@ function DesktopNavigation({ className }: { className?: string }) {
 				</Button>
 
 				<Button asChild={true}>
-					<NavLink href={{ pathname: "/signup", query: { type: "patient" } }}>Join Us</NavLink>
+					<NavLink href={{ pathname: "/signup", query: { user: "patient" } }}>Join Us</NavLink>
 				</Button>
 			</div>
 		</article>
@@ -109,8 +109,8 @@ function MobileNavigation(props: MobileNavProps) {
 					<SearchIcon type="white" />
 				</Button>
 
-				<Button theme="primary-inverted" asChild={true}>
-					<NavLink href={{ pathname: "/signup", query: { type: "patient" } }}>Join Us</NavLink>
+				<Button theme="secondary-inverted" asChild={true}>
+					<NavLink href={{ pathname: "/signup", query: { user: "patient" } }}>Join Us</NavLink>
 				</Button>
 			</div>
 		</article>

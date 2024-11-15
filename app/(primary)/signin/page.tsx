@@ -2,9 +2,13 @@
 
 import { IconBox, Logo, NavLink, Show } from "@/components/common";
 import { Button, Form } from "@/components/ui";
+import { callBackendApi } from "@/lib/api/callBackendApi";
+import type { SuccessContext } from "@zayne-labs/callapi";
+import { useRouter } from "next-nprogress-bar";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { Main } from "../_components";
 
 function SignInPage() {
@@ -18,6 +22,24 @@ function SignInPage() {
 	const { control } = methods;
 
 	const user = useSearchParams().get("user") as "doctor" | "patient" | null;
+
+	const router = useRouter();
+
+	const onSubmit = async (data: Record<string, unknown>) => {
+		const resolvedUser = user ?? "patient";
+
+		await callBackendApi("/:user/login", {
+			params: { user: resolvedUser },
+			method: "POST",
+			body: data,
+
+			onSuccess: (ctx: SuccessContext<{ message: string }>) => {
+				toast.success(ctx.data.message);
+
+				router.push(`/${resolvedUser}`);
+			},
+		});
+	};
 
 	return (
 		<Main className="md:w-full">
@@ -37,7 +59,11 @@ function SignInPage() {
 							Sign in to MedInfo Nigeria
 						</h1>
 
-						<Form.Root methods={methods} className="w-full gap-[14px]">
+						<Form.Root
+							methods={methods}
+							className="w-full gap-[14px]"
+							onSubmit={(event) => void methods.handleSubmit(onSubmit)(event)}
+						>
 							<Form.Item control={control} name="email" className="gap-1 font-roboto font-medium">
 								<Form.Label className="md:text-[20px]">Email</Form.Label>
 
@@ -113,7 +139,6 @@ function SignInPage() {
 								<div className="flex flex-col items-center gap-2">
 									<NavLink
 										transitionType="Regular"
-										// onClick={() => setSearchParams.triggerPopstate()}
 										href={{
 											query: { user: user === "doctor" ? "patient" : "doctor" },
 										}}
@@ -127,7 +152,7 @@ function SignInPage() {
 										<NavLink
 											transitionType="Regular"
 											href={{
-												pathname: "/signin",
+												pathname: "/signup",
 												query: { user: user === "doctor" ? "doctor" : "patient" },
 											}}
 											className="text-medinfo-primary-main"
@@ -153,7 +178,7 @@ function SignInPage() {
 						<NavLink
 							href={{
 								pathname: "/signup",
-								query: { type: user === "doctor" ? "doctor" : "patient" },
+								query: { user: user === "doctor" ? "doctor" : "patient" },
 							}}
 						>
 							Sign up

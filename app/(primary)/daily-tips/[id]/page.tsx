@@ -1,6 +1,5 @@
 import { getElementList } from "@/components/common";
-import type { SingleTip, TipsResponse } from "@/lib/types";
-import { callBackendApi } from "@/lib/utils/callBackendApi";
+import { type SingleTip, type TipsResponse, callBackendApi } from "@/lib/api/callBackendApi";
 import Image from "next/image";
 import { Main } from "../../_components";
 import { ScrollableTipCards } from "../DailyTipCard";
