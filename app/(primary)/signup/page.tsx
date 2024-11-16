@@ -4,6 +4,7 @@ import { IconBox, Logo, NavLink, Show } from "@/components/common";
 import { Button, DatePicker, Form, Select } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { SuccessContext } from "@zayne-labs/callapi";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useForm } from "react-hook-form";
@@ -46,6 +47,10 @@ function SignUpPage() {
 			method: "POST",
 			body: formData,
 			params: { user: resolvedUser },
+
+			onError: (ctx) => {
+				toast.error(ctx.error.message);
+			},
 
 			onSuccess: (ctx: SuccessContext<{ message: string }>) => {
 				toast.success(ctx.data.message);
@@ -399,17 +404,17 @@ function SignUpPage() {
 
 									<div className="flex gap-8">
 										<Button
+											asChild={true}
 											size="icon"
 											theme="secondary"
 											className="rounded-[8px]"
-											onClick={() =>
-												router.push("https://medinfo-backend-xie7.onrender.com/auth/google")
-											}
 										>
-											<IconBox
-												icon="icon-park-outline:google"
-												className="size-[18px] lg:size-6"
-											/>
+											<Link href="https://medinfo-backend-xie7.onrender.com/auth/google">
+												<IconBox
+													icon="icon-park-outline:google"
+													className="size-[18px] lg:size-6"
+												/>
+											</Link>
 										</Button>
 
 										<Button size="icon" theme="secondary" className="rounded-[8px]">

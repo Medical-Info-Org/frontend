@@ -33,6 +33,10 @@ function SignInPage() {
 			method: "POST",
 			body: data,
 
+			onError: (ctx) => {
+				toast.error(ctx.error.message);
+			},
+
 			onSuccess: (ctx: SuccessContext<{ message: string }>) => {
 				toast.success(ctx.data.message);
 
