@@ -3,7 +3,7 @@
 import { cnMerge } from "@/lib/utils/cn";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import type { InferProps } from "@zayne-labs/toolkit/react";
-import { isValidElement } from "react";
+import { isString } from "@zayne-labs/toolkit/type-helpers";
 import { IconBox } from "../common/IconBox";
 
 function AccordionItem(props: InferProps<typeof AccordionPrimitive.Item>) {
@@ -13,30 +13,29 @@ function AccordionItem(props: InferProps<typeof AccordionPrimitive.Item>) {
 }
 
 function AccordionTrigger(
-	props: Omit<InferProps<typeof AccordionPrimitive.Trigger>, "className"> & {
-		icon?: string | React.JSX.Element;
-		classNames?: { base?: string; icon?: string };
+	props: InferProps<typeof AccordionPrimitive.Trigger> & {
+		withDefaultIcon?: boolean | string;
+		classNames?: { header?: string; base?: string; icon?: string };
 	}
 ) {
-	const { classNames, children, icon, ...restOfProps } = props;
+	const { classNames, className, children, withDefaultIcon = true, ...restOfProps } = props;
 
 	return (
-		<AccordionPrimitive.Header className="flex">
+		<AccordionPrimitive.Header className={cnMerge("flex", classNames?.header)}>
 			<AccordionPrimitive.Trigger
 				className={cnMerge(
 					`flex flex-1 items-center justify-between py-4 text-[14px] font-medium transition-all
 					[&[data-state=open]>svg]:rotate-180`,
+					className,
 					classNames?.base
 				)}
 				{...restOfProps}
 			>
 				{children}
 
-				{isValidElement(icon) && icon}
-
-				{!isValidElement(icon) && (
+				{withDefaultIcon && (
 					<IconBox
-						icon={(icon as string | undefined) ?? "radix-icons:chevron-down"}
+						icon={isString(withDefaultIcon) ? withDefaultIcon : "radix-icons:chevron-down"}
 						className={cnMerge(
 							"size-4 shrink-0 transition-transform duration-200",
 							classNames?.icon
@@ -67,6 +66,9 @@ function AccordionContent(props: InferProps<typeof AccordionPrimitive.Content>) 
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const { Root } = AccordionPrimitive;
+
 export const Item = AccordionItem;
+
 export const Trigger = AccordionTrigger;
+
 export const Content = AccordionContent;

@@ -24,7 +24,6 @@ function SignUpPage() {
 			specialty: "",
 			license: null,
 			country: "",
-			photo: null,
 		},
 	});
 
