@@ -45,30 +45,33 @@ function AccordionComponent() {
 					<Accordion.Item key={FAQ.question} value={FAQ.answer} asChild={true}>
 						<li>
 							<Accordion.Trigger
-								icon={
+								withDefaultIcon={false}
+								classNames={{
+									base: `flex min-h-[68px] flex-col items-start rounded-b-[16px] rounded-t-[16px]
+									border border-medinfo-primary-darker px-6 py-[15px] text-[22px]
+									text-medinfo-primary-main md:p-6 md:text-[32px] md:font-semibold
+									[&[data-state=open]_svg]:rotate-180`,
+								}}
+							>
+								<div className="flex w-full items-center justify-between gap-6">
+									<p className="text-pretty text-left">{FAQ.question}</p>
+
 									<span
 										className="flex items-center justify-center rounded-full
 											bg-medinfo-primary-main p-[10px] md:p-4"
 									>
 										<ChevronDownIcon className="size-4 md:size-6" />
 									</span>
-								}
-								classNames={{
-									base: `min-h-[68px] rounded-t-[16px] border-x border-t
-									border-medinfo-primary-darker px-6 py-[15px] text-[22px]
-									text-medinfo-primary-main data-[state=closed]:rounded-b-[16px]
-									data-[state=closed]:border-b md:p-6 md:text-[32px] md:font-semibold`,
-								}}
-							>
-								{FAQ.question}
+								</div>
+
+								<Accordion.Content
+									className="border-medinfo-primary-darker py-[18px] text-left md:py-[27px]"
+								>
+									<hr className="mb-4 h-[2px] bg-medinfo-secondary-main" />
+
+									<p>{FAQ.answer}</p>
+								</Accordion.Content>
 							</Accordion.Trigger>
-							<Accordion.Content
-								className="rounded-b-[16px] border-x border-b border-medinfo-primary-darker px-6
-									pb-6 pt-0"
-							>
-								<hr className="mb-4 h-[2px] bg-medinfo-secondary-main" />
-								{FAQ.answer}
-							</Accordion.Content>
 						</li>
 					</Accordion.Item>
 				)}
