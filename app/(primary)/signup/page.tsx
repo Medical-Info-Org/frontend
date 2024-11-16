@@ -426,7 +426,9 @@ function SignUpPage() {
 									</div>
 								</Show>
 
-								<Button type="submit">Sign Up</Button>
+								<Button type="submit">
+									{methods.formState.isSubmitting ? "Loading..." : "Sign Up"}
+								</Button>
 
 								<div className="flex flex-col items-center gap-2">
 									<NavLink
