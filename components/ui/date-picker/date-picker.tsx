@@ -61,7 +61,6 @@ function DatePicker(props: DatePickerProps) {
 
 						onChange(format(date, formats?.onChange ?? "MM-dd-yyyy"));
 					}}
-					initialFocus={true}
 				/>
 			</Popover.Content>
 		</Popover.Root>
