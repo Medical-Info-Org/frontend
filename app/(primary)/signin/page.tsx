@@ -138,8 +138,12 @@ function SignInPage() {
 									</div>
 								</Show>
 
-								<Button type="submit">
-									{methods.formState.isSubmitting ? "Loading..." : "Sign In"}
+								<Button
+									type="submit"
+									isLoading={methods.formState.isSubmitting}
+									disabled={methods.formState.isSubmitting}
+								>
+									Sign In
 								</Button>
 
 								<div className="flex flex-col items-center gap-2">

@@ -426,8 +426,12 @@ function SignUpPage() {
 									</div>
 								</Show>
 
-								<Button type="submit">
-									{methods.formState.isSubmitting ? "Loading..." : "Sign Up"}
+								<Button
+									type="submit"
+									isLoading={methods.formState.isSubmitting}
+									disabled={methods.formState.isSubmitting}
+								>
+									Sign Up
 								</Button>
 
 								<div className="flex flex-col items-center gap-2">

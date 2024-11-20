@@ -56,30 +56,44 @@ const tailwindConfig = withTV({
 				},
 
 				sonner: {
-					"success-bg": "hsl(150 100% 6%)",
-					"success-text": "hsl(150 100% 90%)",
-					"success-border": "hsl(147 100% 12%)",
-					"error-bg": "hsl(358 76% 10%)",
-					"error-text": "hsl(358 100% 81%)",
-					"error-border": "hsl(357 89% 16%)",
+					success: {
+						bg: "hsl(150, 100%, 6%)",
+						text: "hsl(150, 100%, 90%)",
+						border: "hsl(147, 100%, 12%)",
+					},
+					error: {
+						bg: "hsl(358, 76%, 10%)",
+						text: "hsl(358, 100%, 81%)",
+						border: "hsl(357, 89%, 16%)",
+					},
 				},
 
 				shadcn: {
 					background: "hsl(0, 0%, 100%)",
 					foreground: "hsl(222.2, 47.4%, 11.2%)",
-					popover: "hsl(0, 0%, 100%)",
-					primary: "hsl(222.2, 47.4%, 11.2%)",
-					"primary-foreground": "hsl(210, 40%, 98%)",
-					"popover-foreground": "hsl(222.2, 47.4%, 11.2%)",
-					accent: "hsl(210, 40%, 96.1%)",
-					"accent-foreground": "hsl(222.2, 47.4%, 11.2%)",
+					primary: {
+						DEFAULT: "hsl(222.2, 47.4%, 11.2%)",
+						foreground: "hsl(210, 40%, 98%)",
+					},
+					secondary: {
+						DEFAULT: "hsl(210, 40%, 96.1%)",
+						foreground: "hsl(222.2, 47.4%, 11.2%)",
+					},
+					popover: {
+						DEFAULT: "hsl(0, 0%, 100%)",
+						foreground: "hsl(222.2, 47.4%, 11.2%)",
+					},
+					accent: {
+						DEFAULT: "hsl(210, 40%, 96.1%)",
+						foreground: "hsl(222.2, 47.4%, 11.2%)",
+					},
+					muted: {
+						DEFAULT: "hsl(210, 40%, 96.1%)",
+						foreground: "hsl(215.4, 16.3%, 46.9%)",
+					},
 					input: "hsl(214.3, 31.8%, 91.4%)",
 					border: "hsl(214.3, 31.8%, 91.4%)",
-					secondary: "hsl(210, 40%, 96.1%)",
-					"secondary-foreground": "hsl(222.2, 47.4%, 11.2%)",
 					ring: "hsl(215, 20.2%, 65.1%)",
-					muted: "hsl(210, 40%, 96.1%)",
-					"muted-foreground": "hsl(215.4, 16.3%, 46.9%)",
 				},
 			},
 

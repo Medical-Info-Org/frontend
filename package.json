@@ -3,7 +3,7 @@
 	"type": "module",
 	"version": "0.1.0",
 	"private": true,
-	"packageManager": "pnpm@9.12.2",
+	"packageManager": "pnpm@9.13.2",
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev -p 8000 --turbo",
@@ -25,7 +25,7 @@
 		"next": "^15.0.3",
 		"next-nprogress-bar": "^2.3.14",
 		"react": "19.0.0-rc-5c56b873-20241107",
-		"react-day-picker": "^8.10.1",
+		"react-day-picker": "8.10.1",
 		"react-dom": "19.0.0-rc-5c56b873-20241107",
 		"react-hook-form": "^7.53.2",
 		"sonner": "^1.7.0",

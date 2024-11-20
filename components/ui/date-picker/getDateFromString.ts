@@ -6,6 +6,7 @@ const getDateFromString = (dateString: string, fallback = DATE_TODAY) => {
 			`%cGetDateFromString: Value is an empty string, returning fallback date`,
 			"color: yellow; font-weight: 500; font-size: 12px;"
 		);
+
 		return fallback;
 	}
 
@@ -17,6 +18,7 @@ const getDateFromString = (dateString: string, fallback = DATE_TODAY) => {
 			"color: yellow; font-weight: 500; font-size: 12px;"
 		);
 		console.trace("Invalid date string");
+
 		return fallback;
 	}
 
