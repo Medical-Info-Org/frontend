@@ -1,11 +1,61 @@
 "use client";
 
-import { IconBox, Switch, getElementList } from "@/components/common";
-import { Button } from "@/components/ui";
 import { cnMerge } from "@/lib/utils/cn";
 import { toArray } from "@zayne-labs/toolkit";
-import { isString } from "@zayne-labs/toolkit/type-helpers";
+import { isFile, isString } from "@zayne-labs/toolkit/type-helpers";
 import Image from "next/image";
+import Button from "../ui/button";
+import { DropZone, type DropZoneProps } from "../ui/drop-zone";
+import { getElementList } from "./For";
+import { IconBox } from "./IconBox";
+import Switch from "./Switch";
+
+type FileOrNull = File | null;
+
+type DropZoneInputProps = {
+	value: FileOrNull | FileOrNull[];
+	onChange: (file: FileOrNull | FileOrNull[]) => void;
+};
+
+export function DropZoneInput(props: DropZoneInputProps) {
+	const { onChange, value } = props;
+
+	const existingFiles = toArray(value).filter(Boolean);
+
+	const handleFileUpload: DropZoneProps["onDrop"] = ({ acceptedFiles }) => {
+		const newFileState = [...existingFiles, ...acceptedFiles];
+
+		onChange(newFileState.at(-1) as File);
+	};
+
+	return (
+		<DropZone
+			onDrop={handleFileUpload}
+			classNames={{
+				base: `items-center gap-2 rounded-[8px] border-[1.4px] border-dashed
+				border-medinfo-primary-darker px-4 py-3`,
+			}}
+			allowedFileTypes={["image/jpeg", "image/png", "application/pdf"]}
+			validationSettings={{ maxFileSize: 4 }}
+		>
+			<span className="block shrink-0 md:size-10">
+				<IconBox icon="solar:file-send-outline" className="size-full" />
+			</span>
+
+			<p className="text-[18px] font-medium text-medinfo-primary-darker md:text-[20px]">
+				Drag files to upload
+			</p>
+
+			<p className="text-sm text-medinfo-dark-2">Files supported: JPG, PNG, PDF </p>
+
+			<p className="text-sm text-medinfo-dark-2">or</p>
+
+			<Button size="large">Choose File</Button>
+
+			<p className="text-sm text-medinfo-dark-2">Maximum size: 4mb</p>
+		</DropZone>
+	);
+}
 
 type ImagePreviewProps = {
 	classNames?: {
@@ -17,9 +67,7 @@ type ImagePreviewProps = {
 	onChange: (file: File | File[]) => void;
 };
 
-const isFile = (value: unknown) => value instanceof File;
-
-function ImagePreview(props: ImagePreviewProps) {
+export function DropZoneImagePreview(props: ImagePreviewProps) {
 	const { value, onChange, classNames } = props;
 
 	const newFilesArray = toArray(value).filter(Boolean);
@@ -105,5 +153,3 @@ function ImagePreview(props: ImagePreviewProps) {
 		/>
 	);
 }
-
-export default ImagePreview;

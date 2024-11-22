@@ -138,4 +138,4 @@ function DropZone(props: DropZoneProps & InputProps) {
 	);
 }
 
-export default DropZone;
+export { DropZone };

@@ -1,6 +1,6 @@
 "use client";
 
-import { IconBox, Logo, NavLink, Show } from "@/components/common";
+import { DropZoneImagePreview, DropZoneInput, IconBox, Logo, NavLink, Show } from "@/components/common";
 import { Button, DatePicker, Form, Select } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { SuccessContext } from "@zayne-labs/callapi";
@@ -10,8 +10,6 @@ import { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Main } from "../_components";
-import DropZoneInput from "./DropZoneInput";
-import ImagePreview from "./ImagePreview";
 
 function SignUpPage() {
 	const methods = useForm({
@@ -333,7 +331,7 @@ function SignUpPage() {
 											<>
 												<DropZoneInput value={field.value} onChange={field.onChange} />
 
-												<ImagePreview
+												<DropZoneImagePreview
 													classNames={{
 														listContainer: "border-[1.4px] border-medinfo-primary-main",
 													}}

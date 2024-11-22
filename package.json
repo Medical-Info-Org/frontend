@@ -8,7 +8,7 @@
 		"build": "next build",
 		"dev": "next dev -p 8000 --turbo",
 		"lint:check-types": "tsc --pretty --incremental -p tsconfig.json",
-		"lint:eslint": "eslint . --max-warnings 0 --no-warn-ignored --report-unused-disable-directives",
+		"lint:eslint": "eslint . --cache --max-warnings 0 --no-warn-ignored --report-unused-disable-directives",
 		"lint:format": "prettier --cache --write .",
 		"prepare": "husky",
 		"start": "next start"
@@ -19,7 +19,7 @@
 		"@radix-ui/react-popover": "^1.1.2",
 		"@radix-ui/react-select": "^2.1.2",
 		"@zayne-labs/callapi": "1.0.0-rc.34",
-		"@zayne-labs/toolkit": "^0.6.7",
+		"@zayne-labs/toolkit": "^0.6.8",
 		"clsx": "^2.1.1",
 		"date-fns": "^4.1.0",
 		"next": "^15.0.3",

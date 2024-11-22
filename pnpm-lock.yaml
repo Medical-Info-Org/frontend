@@ -24,8 +24,8 @@ importers:
         specifier: 1.0.0-rc.34
         version: 1.0.0-rc.34
       '@zayne-labs/toolkit':
-        specifier: ^0.6.7
-        version: 0.6.7(@types/react@18.3.12)(react@19.0.0-rc.1)(zustand@5.0.1(@types/react@18.3.12)(react@19.0.0-rc.1))
+        specifier: ^0.6.8
+        version: 0.6.8(@types/react@18.3.12)(react@19.0.0-rc.1)(zustand@5.0.1(@types/react@18.3.12)(react@19.0.0-rc.1))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -980,8 +980,8 @@ packages:
       eslint-plugin-vue:
         optional: true
 
-  '@zayne-labs/toolkit@0.6.7':
-    resolution: {integrity: sha512-u15APDoduGpBtPhyzrXcRg4+4QtZkC/77vgLTXJSzKpiqpxVcKbgiTL5MLH80XoSCzW8xZaNe6m5VX25hAVoFw==}
+  '@zayne-labs/toolkit@0.6.8':
+    resolution: {integrity: sha512-CdmLqXuc0QQ0QGLmmMsXDV1sqzgNmQD0y4B3SGNbChJy2fkJBL+lt+71ZUMWpxvTlFw/LfeEqQHY0c+HrO33cw==}
     engines: {node: '>=18.x'}
     peerDependencies:
       '@types/react': ^18.0.0
@@ -3523,7 +3523,7 @@ snapshots:
       - typescript
       - vue-eslint-parser
 
-  '@zayne-labs/toolkit@0.6.7(@types/react@18.3.12)(react@19.0.0-rc.1)(zustand@5.0.1(@types/react@18.3.12)(react@19.0.0-rc.1))':
+  '@zayne-labs/toolkit@0.6.8(@types/react@18.3.12)(react@19.0.0-rc.1)(zustand@5.0.1(@types/react@18.3.12)(react@19.0.0-rc.1))':
     optionalDependencies:
       '@types/react': 18.3.12
       react: 19.0.0-rc.1

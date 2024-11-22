@@ -2,7 +2,8 @@
 
 import type { Prettify } from "@zayne-labs/toolkit/type-helpers";
 import { type VariantProps, tv } from "tailwind-variants";
-import { IconBox, Slot } from "../common";
+import { IconBox } from "../common/IconBox";
+import { Slot } from "../common/Slot";
 
 // prettier-ignore
 export type ButtonProps = Prettify<{
