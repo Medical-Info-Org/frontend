@@ -1,34 +1,41 @@
-import { DocumentUploadIcon } from "@/components/icons";
+"use client";
+
+import { IconBox } from "@/components/common";
 import { Button, DropZone } from "@/components/ui";
 import type { DropZoneProps } from "@/components/ui/drop-zone";
-import { toast } from "sonner";
+import { toArray } from "@zayne-labs/toolkit";
+
+type FileOrNull = File | null;
 
 type DropZoneInputProps = {
-	onChange: (file: File | null | undefined) => void;
+	value: FileOrNull | FileOrNull[];
+	onChange: (file: FileOrNull | FileOrNull[]) => void;
 };
 
 function DropZoneInput(props: DropZoneInputProps) {
-	const { onChange } = props;
+	const { onChange, value } = props;
 
-	const handleImageUpload: DropZoneProps["onDrop"] = ({ acceptedFiles }) => {
-		onChange(acceptedFiles[0]);
+	const existingFiles = toArray(value).filter(Boolean);
 
-		toast.success("Success", {
-			description: `Uploaded ${acceptedFiles.length} file${acceptedFiles.length > 1 ? "s" : ""}!`,
-		});
+	const handleFileUpload: DropZoneProps["onDrop"] = ({ acceptedFiles }) => {
+		const newFileState = [...existingFiles, ...acceptedFiles];
+
+		onChange(newFileState.at(-1) as File);
 	};
 
 	return (
 		<DropZone
-			onDrop={handleImageUpload}
+			onDrop={handleFileUpload}
 			classNames={{
 				base: `items-center gap-2 rounded-[8px] border-[1.4px] border-dashed
 				border-medinfo-primary-darker px-4 py-3`,
 			}}
 			allowedFileTypes={["image/jpeg", "image/png", "application/pdf"]}
-			validationRules={{ maxFileSize: 4 }}
+			validationSettings={{ maxFileSize: 4 }}
 		>
-			<DocumentUploadIcon className="shrink-0 md:size-10" />
+			<span className="block shrink-0 md:size-10">
+				<IconBox icon="solar:file-send-outline" className="size-full" />
+			</span>
 
 			<p className="text-[18px] font-medium text-medinfo-primary-darker md:text-[20px]">
 				Drag files to upload

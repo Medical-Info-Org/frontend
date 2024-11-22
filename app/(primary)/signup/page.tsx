@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Main } from "../_components";
 import DropZoneInput from "./DropZoneInput";
+import ImagePreview from "./ImagePreview";
 
 function SignUpPage() {
 	const methods = useForm({
@@ -328,7 +329,19 @@ function SignUpPage() {
 									</Form.Label>
 
 									<Form.Controller
-										render={({ field }) => <DropZoneInput onChange={field.onChange} />}
+										render={({ field }) => (
+											<>
+												<DropZoneInput value={field.value} onChange={field.onChange} />
+
+												<ImagePreview
+													classNames={{
+														listContainer: "border-[1.4px] border-medinfo-primary-main",
+													}}
+													value={field.value}
+													onChange={field.onChange}
+												/>
+											</>
+										)}
 									/>
 								</Form.Item>
 							</Show>

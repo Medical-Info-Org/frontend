@@ -4,64 +4,60 @@ import { cnMerge } from "@/lib/utils/cn";
 import { handleFileValidation } from "@zayne-labs/toolkit";
 import { useToggle } from "@zayne-labs/toolkit/react";
 import { isFunction, isObject } from "@zayne-labs/toolkit/type-helpers";
-import type { ChangeEvent, DragEvent } from "react";
+import { type ChangeEvent, type DragEvent, useState } from "react";
 import { toast } from "sonner";
 import { InputPrimitive } from "./form";
 
-type InputProps = Omit<React.ComponentPropsWithRef<"input">, "className" | "onDrop"> & {
-	classNames?: { base?: string; input?: string; activeDragState?: string };
+type RenderProps = {
+	acceptedFiles: File[];
 };
 
-export type DropZoneProps =
-	| {
-			existingFiles?: File[];
+type InputProps = Omit<React.ComponentPropsWithRef<"input">, "onDrop" | "children"> & {
+	classNames?: { base?: string; input?: string; activeDragState?: string };
+	children?: React.ReactNode | ((props: RenderProps) => React.ReactNode);
+};
 
-			allowedFileTypes?: string[];
+export type DropZoneProps = {
+	existingFiles?: File[];
 
-			// eslint-disable-next-line ts-eslint/no-explicit-any
-			validator?: (...params: any[]) => File[];
+	allowedFileTypes?: string[];
 
-			validationRules?: "Option not available since you're using the validator prop";
+	disableInbuiltValidation?: boolean;
 
-			onDrop: (details: {
-				acceptedFiles: File[];
-				event: ChangeEvent<HTMLInputElement> | DragEvent<HTMLDivElement>;
-			}) => void;
-	  }
-	| {
-			existingFiles?: File[];
+	validationSettings?: {
+		fileLimit?: number;
+		maxFileSize?: number;
+		disallowDuplicates?: boolean;
+	};
 
-			allowedFileTypes?: string[];
+	validator?: (context: { newFileList: FileList; existingFileArray: File[] | undefined }) => File[];
 
-			validationRules?: {
-				fileLimit?: number;
-				maxFileSize?: number;
-				disallowDuplicates?: boolean;
-			};
-
-			validator?: "Option not available since you're using the validationRules prop";
-
-			onDrop: (details: {
-				acceptedFiles: File[];
-				event: ChangeEvent<HTMLInputElement> | DragEvent<HTMLDivElement>;
-			}) => void;
-	  };
+	onDrop: (details: {
+		acceptedFiles: File[];
+		event: ChangeEvent<HTMLInputElement> | DragEvent<HTMLDivElement>;
+	}) => void;
+};
 
 function DropZone(props: DropZoneProps & InputProps) {
 	const {
 		onDrop,
-		validationRules,
+		validationSettings,
 		validator,
 		allowedFileTypes,
+		disableInbuiltValidation,
 		existingFiles,
+		className,
 		classNames,
+		onChange,
 		children,
 		...restOfInputProps
 	} = props;
 
 	const [isDragging, toggleIsDragging] = useToggle(false);
 
-	const handleImageUpload = (event: ChangeEvent<HTMLInputElement> | DragEvent<HTMLDivElement>) => {
+	const [acceptedFiles, setAcceptedFiles] = useState<File[]>([]);
+
+	const handleFileUpload = (event: ChangeEvent<HTMLInputElement> | DragEvent<HTMLDivElement>) => {
 		if (event.type === "drop") {
 			event.preventDefault();
 			toggleIsDragging(false);
@@ -73,8 +69,6 @@ function DropZone(props: DropZoneProps & InputProps) {
 				: (event as ChangeEvent<HTMLInputElement>).target.files;
 
 		if (fileList === null) {
-			console.warn("No file selected");
-
 			toast.error("Error", {
 				description: "No file selected",
 			});
@@ -82,17 +76,29 @@ function DropZone(props: DropZoneProps & InputProps) {
 			return;
 		}
 
-		const filesArray = isFunction(validator)
-			? validator(fileList, existingFiles)
-			: handleFileValidation({
+		const inbuiltValidatedFilesArray = !disableInbuiltValidation
+			? handleFileValidation({
 					newFileList: fileList,
 					existingFileArray: existingFiles,
-					validationRules: isObject(validationRules) ? { ...validationRules, allowedFileTypes } : {},
-				});
+					validationSettings: isObject(validationSettings)
+						? { ...validationSettings, allowedFileTypes }
+						: {},
+					onError: (ctx) => toast.error("Error", { description: ctx.message }),
+					onSuccess: (ctx) => toast.success("Success", { description: ctx.message }),
+				})
+			: [];
 
-		if (filesArray.length === 0) return;
+		const validatorFnFileArray = validator
+			? validator({ newFileList: fileList, existingFileArray: existingFiles })
+			: [];
 
-		onDrop({ acceptedFiles: filesArray, event });
+		const validFilesArray = [...inbuiltValidatedFilesArray, ...validatorFnFileArray];
+
+		if (validFilesArray.length === 0) return;
+
+		setAcceptedFiles(validFilesArray);
+
+		onDrop({ acceptedFiles: validFilesArray, event });
 	};
 
 	const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
@@ -107,7 +113,7 @@ function DropZone(props: DropZoneProps & InputProps) {
 
 	return (
 		<div
-			onDrop={handleImageUpload}
+			onDrop={handleFileUpload}
 			onDragOver={handleDragOver}
 			onDragLeave={handleDragLeave}
 			className={cnMerge(
@@ -117,14 +123,17 @@ function DropZone(props: DropZoneProps & InputProps) {
 			)}
 		>
 			<InputPrimitive
-				className={cnMerge("absolute inset-0 cursor-pointer opacity-0", classNames?.input)}
+				className={cnMerge("absolute inset-0 cursor-pointer opacity-0", className, classNames?.input)}
 				type="file"
 				{...(allowedFileTypes && { accept: allowedFileTypes.join(", ") })}
-				onChange={handleImageUpload}
 				{...restOfInputProps}
+				onChange={(event) => {
+					handleFileUpload(event);
+					onChange?.(event);
+				}}
 			/>
 
-			{children}
+			{isFunction(children) ? children({ acceptedFiles }) : children}
 		</div>
 	);
 }
