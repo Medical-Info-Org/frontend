@@ -1,14 +1,12 @@
-"use client";
-
 import { cnMerge } from "@/lib/utils/cn";
 import { toArray } from "@zayne-labs/toolkit";
 import { isFile, isString } from "@zayne-labs/toolkit/type-helpers";
 import Image from "next/image";
-import Button from "../ui/button";
+import { Button } from "../ui/button";
 import { DropZone, type DropZoneProps } from "../ui/drop-zone";
 import { getElementList } from "./For";
 import { IconBox } from "./IconBox";
-import Switch from "./Switch";
+import { Switch } from "./Switch";
 
 type FileOrNull = File | null;
 
@@ -101,7 +99,7 @@ export function DropZoneImagePreview(props: ImagePreviewProps) {
 					<li
 						key={file instanceof File ? file.name : file}
 						className={cnMerge(
-							"flex items-center justify-between p-2 text-xs",
+							"flex items-center justify-between gap-4 px-4 py-2 text-xs",
 							classNames?.listItem
 						)}
 					>

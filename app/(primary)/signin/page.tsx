@@ -46,15 +46,18 @@ function SignInPage() {
 	};
 
 	return (
-		<Main className="md:w-full">
+		<Main className="w-full px-0 max-md:max-w-[342px] md:flex md:flex-col md:items-center">
 			<div
 				className="rounded-[16px] border-[1.4px] border-medinfo-light-2
-					shadow-[0_0_0_2px_hsl(0,0%,0%,0.25)] md:flex"
+					shadow-[0_0_0_2px_hsl(0,0%,0%,0.25)] md:flex md:max-w-fit"
 			>
-				<section className="p-6 md:flex md:w-full md:flex-col md:items-center md:p-11">
+				<section
+					className="m-6 md:mx-[93px] md:my-11 md:flex md:w-full md:max-w-[460px] md:flex-col
+						md:items-center"
+				>
 					<Logo className="max-lg:h-[46px] max-lg:w-[60px]" />
 
-					<div className="mt-3 flex flex-col items-center gap-8 md:w-max md:px-12">
+					<div className="mt-3 flex flex-col items-center gap-8 md:w-max">
 						<h1
 							className="max-w-[186px] text-center text-[24px] font-semibold leading-[32px]
 								text-medinfo-primary-darker md:mx-[42px] md:max-w-[375px] md:text-[48px]
