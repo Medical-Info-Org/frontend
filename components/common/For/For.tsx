@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import type { PolymorphicProps } from "@zayne-labs/toolkit/react";
 
