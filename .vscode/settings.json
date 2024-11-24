@@ -14,5 +14,6 @@
 		"source.organizeImports.biome": "explicit"
 	},
 
-	"cSpell.words": ["medinfo"]
+	"cSpell.words": ["medinfo"],
+	"conventionalCommits.scopes": ["drop-zone"]
 }

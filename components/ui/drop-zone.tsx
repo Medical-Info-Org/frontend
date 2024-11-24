@@ -12,44 +12,44 @@ type RenderProps = {
 	acceptedFiles: File[];
 };
 
-type InputProps = Omit<React.ComponentPropsWithRef<"input">, "onDrop" | "children"> & {
-	classNames?: { base?: string; input?: string; activeDragState?: string };
+type InputProps = Omit<React.ComponentPropsWithRef<"input">, "children" | "onDrop"> & {
 	children?: React.ReactNode | ((props: RenderProps) => React.ReactNode);
+	classNames?: { activeDragState?: string; base?: string; input?: string };
 };
 
 export type DropZoneProps = {
-	existingFiles?: File[];
-
 	allowedFileTypes?: string[];
 
 	disableInbuiltValidation?: boolean;
 
-	validationSettings?: {
-		fileLimit?: number;
-		maxFileSize?: number;
-		disallowDuplicates?: boolean;
-	};
-
-	validator?: (context: { newFileList: FileList; existingFileArray: File[] | undefined }) => File[];
+	existingFiles?: File[];
 
 	onDrop: (details: {
 		acceptedFiles: File[];
 		event: ChangeEvent<HTMLInputElement> | DragEvent<HTMLDivElement>;
 	}) => void;
+
+	validationSettings?: {
+		disallowDuplicates?: boolean;
+		fileLimit?: number;
+		maxFileSize?: number;
+	};
+
+	validator?: (context: { existingFileArray: File[] | undefined; newFileList: FileList }) => File[];
 };
 
 function DropZone(props: DropZoneProps & InputProps) {
 	const {
+		allowedFileTypes,
+		children,
+		className,
+		classNames,
+		disableInbuiltValidation,
+		existingFiles,
+		onChange,
 		onDrop,
 		validationSettings,
 		validator,
-		allowedFileTypes,
-		disableInbuiltValidation,
-		existingFiles,
-		className,
-		classNames,
-		onChange,
-		children,
 		...restOfInputProps
 	} = props;
 
@@ -78,18 +78,18 @@ function DropZone(props: DropZoneProps & InputProps) {
 
 		const inbuiltValidatedFilesArray = !disableInbuiltValidation
 			? handleFileValidation({
-					newFileList: fileList,
 					existingFileArray: existingFiles,
+					newFileList: fileList,
+					onError: (ctx) => toast.error("Error", { description: ctx.message }),
+					onSuccess: (ctx) => toast.success("Success", { description: ctx.message }),
 					validationSettings: isObject(validationSettings)
 						? { ...validationSettings, allowedFileTypes }
 						: {},
-					onError: (ctx) => toast.error("Error", { description: ctx.message }),
-					onSuccess: (ctx) => toast.success("Success", { description: ctx.message }),
 				})
 			: [];
 
 		const validatorFnFileArray = validator
-			? validator({ newFileList: fileList, existingFileArray: existingFiles })
+			? validator({ existingFileArray: existingFiles, newFileList: fileList })
 			: [];
 
 		const validFilesArray = [...inbuiltValidatedFilesArray, ...validatorFnFileArray];
@@ -117,13 +117,17 @@ function DropZone(props: DropZoneProps & InputProps) {
 			onDragOver={handleDragOver}
 			onDragLeave={handleDragLeave}
 			className={cnMerge(
-				"relative flex flex-col",
+				"relative isolate flex flex-col",
 				classNames?.base,
 				isDragging && ["opacity-60", classNames?.activeDragState]
 			)}
 		>
 			<InputPrimitive
-				className={cnMerge("absolute inset-0 cursor-pointer opacity-0", className, classNames?.input)}
+				className={cnMerge(
+					"absolute inset-0 z-[100] cursor-pointer opacity-0",
+					className,
+					classNames?.input
+				)}
 				type="file"
 				{...(allowedFileTypes && { accept: allowedFileTypes.join(", ") })}
 				{...restOfInputProps}

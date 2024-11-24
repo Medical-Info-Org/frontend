@@ -1,3 +1,5 @@
+"use client";
+
 import { cnMerge } from "@/lib/utils/cn";
 import { toArray } from "@zayne-labs/toolkit";
 import { isFile, isString } from "@zayne-labs/toolkit/type-helpers";
@@ -11,8 +13,8 @@ import { Switch } from "./Switch";
 type FileOrNull = File | null;
 
 type DropZoneInputProps = {
-	value: FileOrNull | FileOrNull[];
 	onChange: (file: FileOrNull | FileOrNull[]) => void;
+	value: FileOrNull | FileOrNull[];
 };
 
 export function DropZoneInput(props: DropZoneInputProps) {
@@ -30,11 +32,11 @@ export function DropZoneInput(props: DropZoneInputProps) {
 		<DropZone
 			onDrop={handleFileUpload}
 			classNames={{
-				base: `items-center gap-2 rounded-[8px] border-[1.4px] border-dashed
-				border-medinfo-primary-darker px-4 py-3`,
+				base: `items-center gap-2 rounded-[8px] border-[3px] border-dashed border-gray-600 px-4
+				py-[60px]`,
 			}}
-			allowedFileTypes={["image/jpeg", "image/png", "application/pdf"]}
-			validationSettings={{ maxFileSize: 4 }}
+			allowedFileTypes={["text/csv"]}
+			validationSettings={{ maxFileSize: 6 }}
 		>
 			<span className="block shrink-0 md:size-10">
 				<IconBox icon="solar:file-send-outline" className="size-full" />
@@ -57,16 +59,16 @@ export function DropZoneInput(props: DropZoneInputProps) {
 
 type ImagePreviewProps = {
 	classNames?: {
+		image?: string;
 		listContainer?: string;
 		listItem?: string;
-		image?: string;
 	};
-	value: File | File[];
 	onChange: (file: File | File[]) => void;
+	value: File | File[];
 };
 
 export function DropZoneImagePreview(props: ImagePreviewProps) {
-	const { value, onChange, classNames } = props;
+	const { classNames, onChange, value } = props;
 
 	const newFilesArray = toArray(value).filter(Boolean);
 
@@ -99,7 +101,7 @@ export function DropZoneImagePreview(props: ImagePreviewProps) {
 					<li
 						key={file instanceof File ? file.name : file}
 						className={cnMerge(
-							"flex items-center justify-between gap-4 px-4 py-2 text-xs",
+							"flex items-center justify-between p-2 text-xs",
 							classNames?.listItem
 						)}
 					>
@@ -138,12 +140,12 @@ export function DropZoneImagePreview(props: ImagePreviewProps) {
 						</div>
 
 						{isFile(file) && (
-							<Button unstyled={true} onClick={handleRemoveImage(file)}>
+							<button type="button" onClick={handleRemoveImage(file)}>
 								<IconBox
 									icon="lucide:trash-2"
 									className="size-[20px] text-red-500 active:scale-110"
 								/>
-							</Button>
+							</button>
 						)}
 					</li>
 				);
