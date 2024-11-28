@@ -19,6 +19,7 @@ function Calendar(props: CalendarProps) {
 			components={{ IconLeft, IconRight }}
 			showOutsideDays={showOutsideDays}
 			className={cnMerge("p-[1.2rem]", className)}
+			// eslint-disable-next-line tailwindcss/no-custom-classname
 			classNames={{
 				months: "flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0",
 				month: "space-y-4",
@@ -28,8 +29,8 @@ function Calendar(props: CalendarProps) {
 				nav_button: cnMerge(
 					shadcnButtonVariants({
 						variant: "outline",
-						className: `border-[1.4px] border-medinfo-primary-main hover:bg-medinfo-primary-lighter
-						hover:text-shadcn-primary-foreground`,
+						className: `border-[1.4px] border-medinfo-primary-main hover:border-none
+						hover:bg-medinfo-primary-lighter hover:text-shadcn-primary-foreground`,
 					}),
 					"size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
 				),

@@ -1,15 +1,16 @@
 "use client";
 
+import { Main } from "@/app/_components";
 import { IconBox, Logo, NavLink, Show } from "@/components/common";
 import { Button, Form } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { SuccessContext } from "@zayne-labs/callapi";
 import { useRouter } from "next-nprogress-bar";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Main } from "../_components";
 
 function SignInPage() {
 	const methods = useForm({
@@ -46,7 +47,7 @@ function SignInPage() {
 	};
 
 	return (
-		<Main className="w-full px-0 max-md:max-w-[342px] md:flex md:flex-col md:items-center">
+		<Main className="w-full px-0 max-md:max-w-[400px] md:flex md:flex-col md:items-center">
 			<div
 				className="rounded-[16px] border-[1.4px] border-medinfo-light-2
 					shadow-[0_0_0_2px_hsl(0,0%,0%,0.25)] md:flex md:max-w-fit"
@@ -125,11 +126,18 @@ function SignInPage() {
 									<p className="text-medinfo-dark-4 md:text-[20px]">Or</p>
 
 									<div className="flex gap-8">
-										<Button size="icon" theme="secondary" className="rounded-[8px]">
-											<IconBox
-												icon="icon-park-outline:google"
-												className="size-[18px] lg:size-6"
-											/>
+										<Button
+											asChild={true}
+											size="icon"
+											theme="secondary"
+											className="rounded-[8px]"
+										>
+											<Link href="https://medinfo-backend-xie7.onrender.com/auth/google">
+												<IconBox
+													icon="icon-park-outline:google"
+													className="size-[18px] lg:size-6"
+												/>
+											</Link>
 										</Button>
 
 										<Button size="icon" theme="secondary" className="rounded-[8px]">

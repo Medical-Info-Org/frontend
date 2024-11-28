@@ -1,5 +1,6 @@
 "use client";
 
+import { Main } from "@/app/_components";
 import { DropZoneImagePreview, DropZoneInput, IconBox, Logo, NavLink, Show } from "@/components/common";
 import { Button, DatePicker, Form, Select } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
@@ -9,7 +10,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Main } from "../_components";
 
 function SignUpPage() {
 	const methods = useForm({
@@ -60,7 +60,7 @@ function SignUpPage() {
 	};
 
 	return (
-		<Main className="w-full px-0 max-md:max-w-[342px] md:flex md:flex-col md:items-center">
+		<Main className="w-full px-0 max-md:max-w-[400px] md:flex md:flex-col md:items-center">
 			<div
 				className="rounded-[16px] border-[1.4px] border-medinfo-light-2
 					shadow-[0_0_0_2px_hsl(0,0%,0%,0.25)] md:flex md:max-w-fit"

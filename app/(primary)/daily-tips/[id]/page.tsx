@@ -1,7 +1,7 @@
+import { Main } from "@/app/_components";
 import { getElementList } from "@/components/common";
 import { type SingleTip, type TipsResponse, callBackendApi } from "@/lib/api/callBackendApi";
 import Image from "next/image";
-import { Main } from "../../_components";
 import { ScrollableTipCards } from "../DailyTipCard";
 import HealthFinderLogo from "../HealthFinderLogo";
 

@@ -1,10 +1,10 @@
 "use client";
 
+import { Main } from "@/app/_components";
 import { IconBox, NavLink } from "@/components/common";
 import { Button, Form } from "@/components/ui";
 import { cnJoin } from "@/lib/utils/cn";
 import { useState } from "react";
-import { Main } from "../_components";
 
 function ForgotPasswordPage() {
 	const [resetMode, setResetMode] = useState<"email" | "sms">("email");

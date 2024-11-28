@@ -1,8 +1,8 @@
+import { Main } from "@/app/_components";
 import { NavLink } from "@/components/common";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { DiseasesResponse } from "@/lib/api/callBackendApi/types";
 import { notFound } from "next/navigation";
-import { Main } from "../_components";
 import LibraryFilter from "./LibraryFilter";
 
 async function LibraryPage() {

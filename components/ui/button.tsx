@@ -38,7 +38,7 @@ const buttonVariants = tv(
 				true: "",
 			},
 
-			disabled: {
+			isDisabled: {
 				true: "cursor-not-allowed",
 			},
 
@@ -67,10 +67,10 @@ const buttonVariants = tv(
 			{
 				size: "icon",
 				withInteractions: true,
-				className: "hover:rounded-full",
+				className: "hover:rounded-full hover:shadow-none",
 			},
 			{
-				disabled: true,
+				isDisabled: true,
 				isLoading: false,
 				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled text-medinfo-dark-4",
 			},
@@ -97,18 +97,18 @@ function Button(props: ButtonProps) {
 		type = "button",
 		theme,
 		size,
-		disabled,
+		isDisabled,
 		...extraButtonProps
 	} = props;
 
 	const Component = asChild ? Slot : "button";
 
 	const BTN_CLASSES = !unstyled
-		? buttonVariants({ theme, size, className, disabled, withInteractions, isLoading })
+		? buttonVariants({ theme, size, className, isDisabled, withInteractions, isLoading })
 		: className;
 
 	return (
-		<Component type={type} className={BTN_CLASSES} disabled={Boolean(disabled)} {...extraButtonProps}>
+		<Component type={type} className={BTN_CLASSES} {...extraButtonProps}>
 			{!isLoading ? (
 				children
 			) : (

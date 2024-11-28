@@ -1,3 +1,4 @@
+import { Main } from "@/app/_components";
 import { IconBox, NavLink, getElementList } from "@/components/common";
 import { Button } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
@@ -5,7 +6,7 @@ import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin } from "@/lib/utils/cn";
 import { feature1, feature2, feature3, hero } from "@/public/assets/images/landing-page";
 import Image from "next/image";
-import { AccordionComponent, Main } from "./_components";
+import { AccordionComponent } from "./_components";
 import { ScrollableTipCards } from "./daily-tips/DailyTipCard";
 
 const coreServices = [
@@ -69,7 +70,7 @@ async function HomePage() {
 	}
 
 	return (
-		<Main className="flex w-full flex-col gap-14 max-md:max-w-[400px] md:gap-[92px]">
+		<Main className="w-full gap-14 max-md:max-w-[400px] md:gap-[92px]">
 			<section className="flex flex-col items-center md:flex-row-reverse md:gap-[67px]">
 				<div className="flex flex-col items-center max-md:text-center md:items-start">
 					<h1
