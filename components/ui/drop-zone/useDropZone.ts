@@ -1,3 +1,5 @@
+"use client";
+
 import { cnMerge } from "@/lib/utils/cn";
 import { type FileValidationOptions, handleFileValidation } from "@zayne-labs/toolkit";
 import { useCallbackRef, useToggle } from "@zayne-labs/toolkit/react";
