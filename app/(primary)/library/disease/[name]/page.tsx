@@ -8,7 +8,7 @@ import { AlternateDiseaseCard, ScrollableAlternateDiseaseCards } from "../../Dis
 async function TipDetailsPage(props: { params: Promise<{ name: string }> }) {
 	// eslint-disable-next-line react/prefer-destructuring-assignment
 	const params = await props.params;
-	
+
 	const [oneDisease, allDiseases] = await Promise.all([
 		callBackendApi<SingleDisease>("/diseases/oneDisease", { query: params }),
 		callBackendApi<DiseasesResponse>("/diseases/allDiseases", { query: { limit: 3 } }),
