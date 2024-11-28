@@ -5,7 +5,10 @@ import Image from "next/image";
 import { ScrollableTipCards } from "../DailyTipCard";
 import HealthFinderLogo from "../HealthFinderLogo";
 
-async function TipExpandedPage({ params }: { params: { id: string } }) {
+async function TipExpandedPage(props: { params: Promise<{ id: string }> }) {
+	// eslint-disable-next-line react/prefer-destructuring-assignment
+	const params = await props.params;
+
 	const [singleTip, allTips] = await Promise.all([
 		callBackendApi<SingleTip>(`/dailyTips/tip/${params.id}`),
 		callBackendApi<TipsResponse>("/dailyTips/tips"),
