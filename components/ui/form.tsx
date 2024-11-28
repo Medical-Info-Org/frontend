@@ -20,7 +20,8 @@ import {
 	useFormState,
 	useFormContext as useHookFormContext,
 } from "react-hook-form";
-import { IconBox, getElementList } from "../common";
+import { getElementList } from "../common/For";
+import { IconBox } from "../common/IconBox";
 
 type FieldValues = Record<string, unknown>;
 

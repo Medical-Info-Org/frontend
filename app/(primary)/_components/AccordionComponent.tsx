@@ -47,8 +47,8 @@ function AccordionComponent() {
 							<Accordion.Trigger
 								withDefaultIcon={false}
 								classNames={{
-									base: `flex min-h-[68px] flex-col items-start rounded-b-[16px] rounded-t-[16px]
-									border border-medinfo-primary-darker px-6 py-[15px] text-[22px]
+									base: `flex min-h-[68px] flex-col items-start rounded-[16px] border
+									border-medinfo-primary-darker px-6 py-[15px] text-[22px]
 									text-medinfo-primary-main md:p-6 md:text-[32px] md:font-semibold
 									[&[data-state=open]_svg]:rotate-180`,
 								}}

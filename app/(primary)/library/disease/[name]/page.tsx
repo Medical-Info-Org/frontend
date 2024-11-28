@@ -1,4 +1,4 @@
-import { Main } from "@/app/(primary)/_components";
+import { Main } from "@/app/_components";
 import { getElementList } from "@/components/common";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { DiseasesResponse, SingleDisease } from "@/lib/api/callBackendApi/types";

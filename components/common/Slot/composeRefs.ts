@@ -1,7 +1,7 @@
 export type PossibleRef<TRef> = React.Ref<TRef> | undefined;
 
 /**
- * Set a given ref to a given value
+ * @description Set a given ref to a given value
  * This utility takes care of different types of refs: callback refs and RefObject(s)
  */
 const setRef = <TRef>(ref: PossibleRef<TRef>, value: TRef) => {
@@ -17,7 +17,7 @@ const setRef = <TRef>(ref: PossibleRef<TRef>, value: TRef) => {
 };
 
 /**
- * A utility to compose refs together
+ *  @description A utility to compose refs together
  * Accepts callback refs and RefObject(s)
  */
 const composeRefs = <TRef>(...refs: Array<PossibleRef<TRef>>) => {

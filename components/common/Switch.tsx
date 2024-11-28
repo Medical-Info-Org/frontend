@@ -42,4 +42,4 @@ Default.slot = Symbol.for("fallback");
 Switch.Match = Match;
 Switch.Default = Default;
 
-export default Switch;
+export { Switch };
