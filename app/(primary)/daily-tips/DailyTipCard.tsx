@@ -6,6 +6,7 @@ import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin, cnMerge } from "@/lib/utils/cn";
 import { useDragScroll } from "@zayne-labs/toolkit/react";
 import Image from "next/image";
+import type React from "react";
 
 export type DailyTipCardProps = {
 	id: string;
@@ -54,7 +55,7 @@ export function ScrollableTipCards({ tips }: { tips: TipsResponse["data"] }) {
 
 	return (
 		<CardList
-			{...dragScrollProps}
+			ref={dragScrollProps.ref as React.Ref<HTMLUListElement>}
 			className={cnJoin("mt-6 select-none gap-5 md:mt-14 md:justify-between", dragContainerClasses)}
 			each={tips}
 			render={(tip) => (

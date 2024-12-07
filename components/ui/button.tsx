@@ -38,7 +38,7 @@ const buttonVariants = tv(
 			},
 
 			disabled: {
-				true: `cursor-not-allowed border-2 border-medinfo-dark-4 bg-medinfo-disabled
+				true: `cursor-not-allowed border-2 border-medinfo-dark-4 bg-medinfo-disabled-fill
 				text-medinfo-dark-4`,
 			},
 
@@ -72,12 +72,12 @@ const buttonVariants = tv(
 			{
 				isDisabled: true,
 				isLoading: false,
-				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled text-medinfo-dark-4",
+				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled-fill text-medinfo-dark-4",
 			},
 			{
 				disabled: true,
 				isLoading: false,
-				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled text-medinfo-dark-4",
+				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled-fill text-medinfo-dark-4",
 			},
 		],
 

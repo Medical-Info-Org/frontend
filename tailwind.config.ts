@@ -50,9 +50,9 @@ const tailwindConfig = withTV({
 						"4": "var(--color-dark-4)",
 					},
 
-					disabled: "var(--disabled)",
+					"disabled-fill": "var(--color-disabled-fill)",
 
-					"body-color": "var(--body-color)",
+					"body-color": "var(--color-body-color)",
 				},
 
 				sonner: {
@@ -95,10 +95,6 @@ const tailwindConfig = withTV({
 					border: "hsl(214.3, 31.8%, 91.4%)",
 					ring: "hsl(215, 20.2%, 65.1%)",
 				},
-			},
-
-			borderRadius: {
-				full: "50%",
 			},
 
 			fontFamily: {

@@ -32,9 +32,9 @@
 		--color-error-lighter: hsl(0, 100%, 68%);
 		--color-error-subtle: hsl(0, 100%, 75%);
 
-		--disabled: hsl(0, 0%, 93%);
+		--color-disabled-fill: hsl(0, 0%, 93%);
 
-		--body-color: hsl(0, 0%, 20%);
+		--color-body-color: hsl(0, 0%, 20%);
 	}
 }
 

@@ -192,7 +192,7 @@ export function ScrollableAlternateDiseaseCards({ diseases }: { diseases: Diseas
 
 	return (
 		<CardList
-			{...dragScrollProps}
+			ref={dragScrollProps.ref as React.Ref<HTMLUListElement>}
 			className={cnMerge("flex justify-between gap-5 lg:mt-10", dragContainerClasses)}
 			each={diseases}
 			render={(disease, index) => (
