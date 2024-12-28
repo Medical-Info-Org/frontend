@@ -1,9 +1,9 @@
 "use client";
 // FIXME - Change accordions component to another suitable one and then remove use client from this page`
 
-import { getElementList } from "@/components/common";
 import { ChevronDownIcon } from "@/components/icons";
 import { Accordion } from "@/components/ui";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 
 const FAQs = [
 	{

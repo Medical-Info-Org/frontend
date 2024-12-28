@@ -35,7 +35,7 @@ async function LibraryPage() {
 			<section className="flex justify-center">
 				<NavLink
 					href="#"
-					transitionType="Regular"
+					transitionType="regular"
 					className="inline-block text-center text-medinfo-primary-main lg:text-[20px] lg:font-medium"
 				>
 					More results ...({allDiseases.data.totalDiseases})

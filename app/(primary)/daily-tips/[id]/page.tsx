@@ -1,6 +1,6 @@
 import { Main } from "@/app/_components";
-import { getElementList } from "@/components/common";
 import { type SingleTip, type TipsResponse, callBackendApi } from "@/lib/api/callBackendApi";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 import Image from "next/image";
 import { ScrollableTipCards } from "../DailyTipCard";
 import HealthFinderLogo from "../HealthFinderLogo";

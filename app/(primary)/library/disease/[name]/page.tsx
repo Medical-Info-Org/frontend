@@ -1,7 +1,7 @@
 import { Main } from "@/app/_components";
-import { getElementList } from "@/components/common";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { DiseasesResponse, SingleDisease } from "@/lib/api/callBackendApi/types";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 import Image from "next/image";
 import { AlternateDiseaseCard, ScrollableAlternateDiseaseCards } from "../../DiseaseCard";
 
@@ -49,7 +49,8 @@ async function TipDetailsPage(props: { params: Promise<{ name: string }> }) {
 
 			<section className="mt-5 flex flex-col gap-5 lg:mt-10">
 				<h1
-					className="text-[32px] font-semibold text-medinfo-primary-darker lg:text-[52px] lg:font-bold"
+					className="text-[32px] font-semibold text-medinfo-primary-darker lg:text-[52px]
+						lg:font-bold"
 				>
 					{oneDisease.data.Disease}
 				</h1>

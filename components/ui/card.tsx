@@ -1,5 +1,5 @@
-import type { PolymorphicProps } from "@zayne-labs/toolkit/react";
-import { Slot } from "../common/Slot";
+import type { PolymorphicProps } from "@zayne-labs/toolkit/react/utils";
+import { Slot } from "@zayne-labs/toolkit/react/ui/slot";
 
 type CardProps = {
 	className?: string;

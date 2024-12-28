@@ -6,12 +6,12 @@ import { Button, DatePicker, Form, Select } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { SuccessContext } from "@zayne-labs/callapi";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { useRouter } from "next/navigation";
+import { use } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-function SignUpPage() {
+function SignUpPage(props: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
 	const methods = useForm({
 		defaultValues: {
 			firstName: "",
@@ -29,9 +29,12 @@ function SignUpPage() {
 
 	const { control } = methods;
 
-	const user = useSearchParams().get("user") as "doctor" | "patient" | null;
-
 	const router = useRouter();
+
+	// eslint-disable-next-line react/prefer-destructuring-assignment
+	const searchParams = use(props.searchParams);
+
+	const user = searchParams.user as "doctor" | "patient" | undefined;
 
 	const onSubmit = async (data: Record<string, unknown>) => {
 		const resolvedUser = user ?? "patient";
@@ -450,7 +453,7 @@ function SignUpPage() {
 
 								<div className="flex flex-col items-center gap-2">
 									<NavLink
-										transitionType="Regular"
+										transitionType="regular"
 										href={{
 											query: { user: user === "doctor" ? "patient" : "doctor" },
 										}}
@@ -462,7 +465,7 @@ function SignUpPage() {
 									<p className="md:hidden">
 										Already have an account?{" "}
 										<NavLink
-											transitionType="Regular"
+											transitionType="regular"
 											href={{
 												pathname: "/signin",
 												query: { user: user === "doctor" ? "doctor" : "patient" },
@@ -504,11 +507,4 @@ function SignUpPage() {
 	);
 }
 
-// == This wrapper is necessary due to vercel's stupid rule for using useSearchParams in a component
-// LINK - https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
-const WithSuspense = () => (
-	<Suspense>
-		<SignUpPage />
-	</Suspense>
-);
-export default WithSuspense;
+export default SignUpPage;

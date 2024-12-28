@@ -2,7 +2,7 @@
 
 import { cnMerge } from "@/lib/utils/cn";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import type { InferProps } from "@zayne-labs/toolkit/react";
+import type { InferProps } from "@zayne-labs/toolkit/react/utils";
 import { IconBox } from "../common";
 
 function DropdownMenuSubTrigger(

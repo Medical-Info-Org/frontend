@@ -1,10 +1,11 @@
 import { Main } from "@/app/_components";
-import { IconBox, NavLink, getElementList } from "@/components/common";
+import { IconBox, NavLink } from "@/components/common";
 import { Button } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin } from "@/lib/utils/cn";
 import { feature1, feature2, feature3, hero } from "@/public/assets/images/landing-page";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 import Image from "next/image";
 import { AccordionComponent } from "./_components";
 import { ScrollableTipCards } from "./daily-tips/DailyTipCard";
@@ -58,11 +59,11 @@ const advantages = [
 	},
 ];
 
-async function HomePage() {
-	const [CoreServiceList] = getElementList();
-	const [FeatureList] = getElementList();
-	const [AdvantageList] = getElementList();
+const [CoreServiceList] = getElementList();
+const [FeatureList] = getElementList();
+const [AdvantageList] = getElementList();
 
+async function HomePage() {
 	const allTips = await callBackendApi<TipsResponse>("/dailyTips/tips");
 
 	if (allTips.error) {

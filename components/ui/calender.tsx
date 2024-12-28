@@ -1,7 +1,7 @@
 "use client";
 
 import { cnMerge } from "@/lib/utils/cn";
-import type { InferProps } from "@zayne-labs/toolkit/react";
+import type { InferProps } from "@zayne-labs/toolkit/react/utils";
 import { DayPicker } from "react-day-picker";
 import { IconBox } from "../common";
 import { shadcnButtonVariants } from "./constants";

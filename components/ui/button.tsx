@@ -2,7 +2,7 @@
 
 import type { Prettify } from "@zayne-labs/toolkit/type-helpers";
 import { type VariantProps, tv } from "tailwind-variants";
-import { Slot } from "../common/Slot";
+import { Slot } from "@zayne-labs/toolkit/react/ui/slot";
 
 // prettier-ignore
 export type ButtonProps = Prettify<{
@@ -38,7 +38,7 @@ const buttonVariants = tv(
 			},
 
 			disabled: {
-				true: `cursor-not-allowed border-2 border-medinfo-dark-4 bg-medinfo-disabled
+				true: `cursor-not-allowed border-2 border-medinfo-dark-4 bg-medinfo-disabled-fill
 				text-medinfo-dark-4`,
 			},
 
@@ -72,12 +72,12 @@ const buttonVariants = tv(
 			{
 				isDisabled: true,
 				isLoading: false,
-				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled text-medinfo-dark-4",
+				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled-fill text-medinfo-dark-4",
 			},
 			{
 				disabled: true,
 				isLoading: false,
-				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled text-medinfo-dark-4",
+				className: "border-2 border-medinfo-dark-4 bg-medinfo-disabled-fill text-medinfo-dark-4",
 			},
 		],
 

@@ -1,10 +1,11 @@
 "use client";
 
-import { IconBox, getElementList } from "@/components/common";
+import { IconBox } from "@/components/common";
 import { SearchIcon } from "@/components/icons";
 import { DropdownMenu } from "@/components/ui";
 import type { DiseasesResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin } from "@/lib/utils/cn";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 import { useState } from "react";
 import { DiseaseCard } from "./DiseaseCard";
 
@@ -25,7 +26,8 @@ function LibraryFilter({ diseases }: { diseases: DiseasesResponse["diseases"] })
 
 						<IconBox
 							icon="lucide:chevron-down"
-							className="size-5 text-medinfo-body-color group-data-[state=open]:rotate-180 md:size-6"
+							className="size-5 text-medinfo-body-color group-data-[state=open]:rotate-180
+								md:size-6"
 						/>
 					</DropdownMenu.Trigger>
 
