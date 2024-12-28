@@ -5,16 +5,16 @@ import { HamburgerIcon, SearchIcon, XIcon } from "@/components/icons";
 import { Button } from "@/components/ui";
 import { cnMerge } from "@/lib/utils/cn";
 import { useToggle } from "@zayne-labs/toolkit/react";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 
 function NavBar() {
 	const [isNavShow, toggleNavShow] = useToggle(false);
 
 	return (
 		<header
-			id="NavBar"
-			className={`sticky inset-[0_0_auto_0] z-[500] flex w-full items-center justify-between bg-white
+			className="sticky inset-[0_0_auto_0] z-[500] flex w-full items-center justify-between bg-white
 				px-6 py-[17px] shadow-[0_4px_8px_hsl(150,20%,25%,0.25)] [transition:box-shadow_0.3s_ease]
-				md:px-10 md:py-5 lg:px-[100px]`}
+				md:px-10 md:py-5 lg:px-[100px]"
 		>
 			<ProgressBar />
 
@@ -22,7 +22,7 @@ function NavBar() {
 
 			<DesktopNavigation className="max-md:hidden" />
 
-			<MobileNavigation isNavShow={isNavShow} toggleNavShow={toggleNavShow} className="md:hidden" />
+			<MobileNavigation className="md:hidden" isNavShow={isNavShow} toggleNavShow={toggleNavShow} />
 
 			<Button unstyled={true} className="z-10 md:hidden" onClick={toggleNavShow}>
 				{isNavShow ? <XIcon /> : <HamburgerIcon />}
@@ -33,23 +33,28 @@ function NavBar() {
 
 export default NavBar;
 
+const links = [
+	{ href: "/", title: "Home" },
+	{ href: "/library", title: "Library" },
+	{ href: "/about", title: "About us" },
+	{ href: "/contact", title: "Contact us" },
+];
+
+const [NavList] = getElementList();
+
 function DesktopNavigation({ className }: { className?: string }) {
 	return (
-		<article className={cnMerge("flex w-full items-center", className)}>
-			<nav className="mx-auto flex min-w-fit gap-14 text-[22px] font-medium">
-				<NavLink transitionType="Navbar" href="/">
-					Home
-				</NavLink>
-				<NavLink transitionType="Navbar" href="/library">
-					Library
-				</NavLink>
-				<NavLink transitionType="Navbar" href="/about">
-					About us
-				</NavLink>
-				<NavLink transitionType="Navbar" href="/contact">
-					Contact us
-				</NavLink>
-			</nav>
+		<section className={cnMerge("flex w-full items-center", className)}>
+			<NavList
+				as="nav"
+				className="mx-auto flex min-w-fit gap-14 text-[22px] font-medium"
+				each={links}
+				render={(link) => (
+					<NavLink transitionType="navbar" href={link.href}>
+						{link.title}
+					</NavLink>
+				)}
+			/>
 
 			<div className="flex min-w-fit items-center gap-8">
 				<Button size="icon" theme="secondary">
@@ -60,7 +65,7 @@ function DesktopNavigation({ className }: { className?: string }) {
 					<NavLink href={{ pathname: "/signup", query: { user: "patient" } }}>Join Us</NavLink>
 				</Button>
 			</div>
-		</article>
+		</section>
 	);
 }
 
@@ -74,7 +79,7 @@ function MobileNavigation(props: MobileNavProps) {
 	const { className, isNavShow, toggleNavShow } = props;
 
 	return (
-		<article
+		<section
 			className={cnMerge(
 				`fixed inset-[0_0_0_auto] flex flex-col items-center gap-7 overflow-hidden
 				bg-medinfo-primary-main pt-10 text-white`,
@@ -89,20 +94,16 @@ function MobileNavigation(props: MobileNavProps) {
 		>
 			<Logo type="footer" className="h-[46px] w-[60px]" />
 
-			<nav className="flex flex-col items-center gap-5 text-nowrap font-medium lg:text-[22px]">
-				<NavLink transitionType="Navbar" href="/">
-					Home
-				</NavLink>
-				<NavLink transitionType="Navbar" href="/library">
-					Library
-				</NavLink>
-				<NavLink transitionType="Navbar" href="/about">
-					About us
-				</NavLink>
-				<NavLink transitionType="Navbar" href="/contact">
-					Contact us
-				</NavLink>
-			</nav>
+			<NavList
+				as="nav"
+				className="flex flex-col items-center gap-5 text-nowrap font-medium lg:text-[22px]"
+				each={links}
+				render={(link) => (
+					<NavLink transitionType="navbar" href={link.href}>
+						{link.title}
+					</NavLink>
+				)}
+			/>
 
 			<div className="flex flex-col items-center gap-4">
 				<Button unstyled={true}>
@@ -113,6 +114,6 @@ function MobileNavigation(props: MobileNavProps) {
 					<NavLink href={{ pathname: "/signup", query: { user: "patient" } }}>Join Us</NavLink>
 				</Button>
 			</div>
-		</article>
+		</section>
 	);
 }

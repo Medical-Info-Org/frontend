@@ -1,11 +1,12 @@
 "use client";
 
-import { IconBox, NavLink, getElementList } from "@/components/common";
+import { IconBox, NavLink } from "@/components/common";
 import { Button, Card } from "@/components/ui";
 import type { Disease, DiseasesResponse } from "@/lib/api/callBackendApi/types";
-import { cnJoin, cnMerge } from "@/lib/utils/cn";
+import { cnJoin } from "@/lib/utils/cn";
 import { tipPlaceHolder } from "@/public/assets/images/landing-page";
-import { useDragScroll } from "@zayne-labs/toolkit/react";
+import { useDragScroll } from "@zayne-labs/toolkit/react/ui/drag-scroll";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 import Image from "next/image";
 
 export type DiseaseCardProps = {
@@ -187,16 +188,20 @@ export function AlternateDiseaseCard(props: AlternateDiseaseCardProps) {
 }
 
 export function ScrollableAlternateDiseaseCards({ diseases }: { diseases: DiseasesResponse["diseases"] }) {
-	const { dragScrollProps, dragContainerClasses, dragItemClasses } = useDragScroll<HTMLUListElement>();
+	const { getRootProps, getItemProps } = useDragScroll<HTMLUListElement>({
+		classNames: {
+			base: "flex justify-between gap-5 lg:mt-10",
+		},
+	});
+
 	const [CardList] = getElementList();
 
 	return (
 		<CardList
-			ref={dragScrollProps.ref as React.Ref<HTMLUListElement>}
-			className={cnMerge("flex justify-between gap-5 lg:mt-10", dragContainerClasses)}
+			{...getRootProps()}
 			each={diseases}
 			render={(disease, index) => (
-				<AlternateDiseaseCard key={index} type="grid" disease={disease} className={dragItemClasses} />
+				<AlternateDiseaseCard key={index} type="grid" disease={disease} {...getItemProps()} />
 			)}
 		/>
 	);

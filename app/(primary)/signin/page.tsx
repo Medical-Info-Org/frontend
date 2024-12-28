@@ -7,12 +7,11 @@ import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { SuccessContext } from "@zayne-labs/callapi";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { use } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-function SignInPage() {
+function SignInPage(props: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
 	const methods = useForm({
 		defaultValues: {
 			email: "",
@@ -22,9 +21,12 @@ function SignInPage() {
 
 	const { control } = methods;
 
-	const user = useSearchParams().get("user") as "doctor" | "patient" | null;
-
 	const router = useRouter();
+
+	// eslint-disable-next-line react/prefer-destructuring-assignment
+	const searchParams = use(props.searchParams);
+
+	const user = searchParams.user as "doctor" | "patient" | undefined;
 
 	const onSubmit = async (data: Record<string, unknown>) => {
 		const resolvedUser = user ?? "patient";
@@ -159,7 +161,7 @@ function SignInPage() {
 
 								<div className="flex flex-col items-center gap-2">
 									<NavLink
-										transitionType="Regular"
+										transitionType="regular"
 										href={{
 											query: { user: user === "doctor" ? "patient" : "doctor" },
 										}}
@@ -171,7 +173,7 @@ function SignInPage() {
 									<p className="md:hidden">
 										Don't have an account?{" "}
 										<NavLink
-											transitionType="Regular"
+											transitionType="regular"
 											href={{
 												pathname: "/signup",
 												query: { user: user === "doctor" ? "doctor" : "patient" },
@@ -211,12 +213,4 @@ function SignInPage() {
 	);
 }
 
-// == This wrapper is necessary due to vercel's stupid rule for using useSearchParams in a component
-// LINK - https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
-const WithSuspense = () => (
-	<Suspense>
-		<SignInPage />
-	</Suspense>
-);
-
-export default WithSuspense;
+export default SignInPage;

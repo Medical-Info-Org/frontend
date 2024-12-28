@@ -1,4 +1,4 @@
-import { isBrowser, on } from "@zayne-labs/toolkit";
+import { isBrowser, on } from "@zayne-labs/toolkit/core";
 import { type SelectorFn, isObject } from "@zayne-labs/toolkit/type-helpers";
 import { type StateCreator, create } from "zustand";
 import { persist } from "zustand/middleware";

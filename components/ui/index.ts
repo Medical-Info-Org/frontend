@@ -3,7 +3,6 @@ export { Button } from "./button";
 export { Card } from "./card";
 export { DatePicker } from "./date-picker";
 export * as Dialog from "./dialog";
-export { DropZone } from "./drop-zone";
 export * as DropdownMenu from "./dropdown-menu";
 export * as Form from "./form";
 export * as Popover from "./popover";

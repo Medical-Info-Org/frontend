@@ -1,12 +1,12 @@
 "use client";
 
-import { IconBox, NavLink, getElementList } from "@/components/common";
+import { IconBox, NavLink } from "@/components/common";
 import { Card } from "@/components/ui";
 import type { TipsResponse } from "@/lib/api/callBackendApi/types";
-import { cnJoin, cnMerge } from "@/lib/utils/cn";
-import { useDragScroll } from "@zayne-labs/toolkit/react";
+import { cnMerge } from "@/lib/utils/cn";
+import { useDragScroll } from "@zayne-labs/toolkit/react/ui/drag-scroll";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 import Image from "next/image";
-import type React from "react";
 
 export type DailyTipCardProps = {
 	id: string;
@@ -49,14 +49,17 @@ export function DailyTipCard({ className, id, imageUrl, title }: DailyTipCardPro
 }
 
 export function ScrollableTipCards({ tips }: { tips: TipsResponse["data"] }) {
-	const { dragScrollProps, dragContainerClasses, dragItemClasses } = useDragScroll<HTMLUListElement>();
+	const { getItemProps, getRootProps } = useDragScroll<HTMLUListElement>({
+		classNames: {
+			base: "mt-6 select-none gap-5 md:mt-14 md:justify-between",
+		},
+	});
 
 	const [CardList] = getElementList();
 
 	return (
 		<CardList
-			ref={dragScrollProps.ref as React.Ref<HTMLUListElement>}
-			className={cnJoin("mt-6 select-none gap-5 md:mt-14 md:justify-between", dragContainerClasses)}
+			{...getRootProps()}
 			each={tips}
 			render={(tip) => (
 				<DailyTipCard
@@ -64,7 +67,7 @@ export function ScrollableTipCards({ tips }: { tips: TipsResponse["data"] }) {
 					id={tip.id}
 					imageUrl={tip.imageUrl}
 					title={tip.title}
-					className={dragItemClasses}
+					{...getItemProps()}
 				/>
 			)}
 		/>

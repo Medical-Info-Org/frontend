@@ -1,6 +1,6 @@
 import { cnMerge } from "@/lib/utils/cn";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import type { InferProps } from "@zayne-labs/toolkit/react";
+import type { InferProps } from "@zayne-labs/toolkit/react/utils";
 import { IconBox } from "../common";
 
 function DialogOverlay(props: InferProps<typeof DialogPrimitive.Overlay>) {

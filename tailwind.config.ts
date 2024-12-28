@@ -8,7 +8,7 @@ const tailwindConfig = withTV({
 	content: [
 		"./app/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
-		"./node_modules/@zayne-labs/toolkit/dist/esm-min/**/*.js",
+		"./node_modules/@zayne-labs/toolkit/dist/esm/react/**/*.js",
 	],
 
 	theme: {

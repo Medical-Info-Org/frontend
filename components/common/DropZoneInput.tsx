@@ -1,12 +1,13 @@
 "use client";
 
 import { cnMerge } from "@/lib/utils/cn";
-import { toArray } from "@zayne-labs/toolkit";
+import { toArray } from "@zayne-labs/toolkit/core";
+import { DropZone, type UseDropZoneProps } from "@zayne-labs/toolkit/react/ui/drop-zone";
+import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 import { isFile, isString } from "@zayne-labs/toolkit/type-helpers";
 import Image from "next/image";
+import { toast } from "sonner";
 import { Button } from "../ui/button";
-import { DropZone, type DropZoneProps } from "../ui/drop-zone";
-import { getElementList } from "./For";
 import { IconBox } from "./IconBox";
 import { Switch } from "./Switch";
 
@@ -22,7 +23,7 @@ export function DropZoneInput(props: DropZoneInputProps) {
 
 	const existingFiles = toArray(value).filter(Boolean);
 
-	const handleFileUpload: DropZoneProps["onUpload"] = ({ acceptedFiles }) => {
+	const handleFileUpload: UseDropZoneProps["onUpload"] = ({ acceptedFiles }) => {
 		const newFileState = [...existingFiles, ...acceptedFiles];
 
 		onChange(newFileState.at(-1) as File);
@@ -30,6 +31,8 @@ export function DropZoneInput(props: DropZoneInputProps) {
 
 	return (
 		<DropZone
+			onUploadError={(ctx) => toast.error("Error", { description: ctx.message })}
+			onUploadSuccess={(ctx) => toast.success("Success", { description: ctx.message })}
 			onUpload={handleFileUpload}
 			classNames={{
 				base: `items-center gap-2 rounded-[8px] border-[1.4px] border-dashed

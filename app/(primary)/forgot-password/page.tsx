@@ -61,7 +61,9 @@ function ForgotPasswordPage() {
 							</div>
 
 							{resetMode === "email" && (
-								<Form.InputRightItem className="ml-auto size-6 rounded-full bg-medinfo-primary-main">
+								<Form.InputRightItem
+									className="ml-auto size-6 rounded-full bg-medinfo-primary-main"
+								>
 									<IconBox icon="mdi:check-bold" className="size-3 text-white" />
 								</Form.InputRightItem>
 							)}
@@ -97,7 +99,9 @@ function ForgotPasswordPage() {
 							</div>
 
 							{resetMode === "sms" && (
-								<Form.InputRightItem className="ml-auto size-6 rounded-full bg-medinfo-primary-main">
+								<Form.InputRightItem
+									className="ml-auto size-6 rounded-full bg-medinfo-primary-main"
+								>
 									<IconBox icon="mdi:check-bold" className="size-3 text-white" />
 								</Form.InputRightItem>
 							)}
@@ -108,7 +112,7 @@ function ForgotPasswordPage() {
 						<Button type="submit">Get link</Button>
 						<NavLink
 							href="#"
-							transitionType="Regular"
+							transitionType="regular"
 							className="text-[20px] font-medium text-medinfo-primary-main"
 						>
 							Resend link

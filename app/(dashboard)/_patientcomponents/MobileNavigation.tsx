@@ -32,13 +32,15 @@ function MobileNavigation(props: MobileNavProps) {
 		>
 			<Logo type="footer" className="h-[46px] w-[60px]" />
 
-			<nav className="mt-[32px] flex flex-col justify-start gap-5 text-nowrap font-medium lg:text-[22px]">
-				<NavLink transitionType="Navbar" href="/patient" className="flex items-center gap-[16px]">
+			<nav
+				className="mt-[32px] flex flex-col justify-start gap-5 text-nowrap font-medium lg:text-[22px]"
+			>
+				<NavLink transitionType="navbar" href="/patient" className="flex items-center gap-[16px]">
 					<DashboardIcon className="fill-white" />
 					Dashboard
 				</NavLink>
 				<NavLink
-					transitionType="Navbar"
+					transitionType="navbar"
 					href="/patient/messages"
 					className="flex items-center gap-[16px]"
 				>
@@ -46,7 +48,7 @@ function MobileNavigation(props: MobileNavProps) {
 					Messages
 				</NavLink>
 				<NavLink
-					transitionType="Navbar"
+					transitionType="navbar"
 					href="/patient/community"
 					className="flex items-center gap-[16px]"
 				>
@@ -54,7 +56,7 @@ function MobileNavigation(props: MobileNavProps) {
 					Community
 				</NavLink>
 				<NavLink
-					transitionType="Navbar"
+					transitionType="navbar"
 					href="/patient/profile"
 					className="flex items-center gap-[16px]"
 				>
@@ -62,14 +64,14 @@ function MobileNavigation(props: MobileNavProps) {
 					Profile
 				</NavLink>
 				<NavLink
-					transitionType="Navbar"
+					transitionType="navbar"
 					href="/patient/settings"
 					className="flex items-center gap-[16px]"
 				>
 					<SettingsIcon className="fill-white" />
 					Settings
 				</NavLink>
-				<NavLink transitionType="Navbar" href="/" className="mt-[32px] flex items-center gap-[16px]">
+				<NavLink transitionType="navbar" href="/" className="mt-[32px] flex items-center gap-[16px]">
 					<LogoutIcon className="fill-white" />
 					Log out
 				</NavLink>
