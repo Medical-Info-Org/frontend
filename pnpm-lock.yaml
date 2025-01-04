@@ -33,8 +33,8 @@ importers:
         specifier: ^0.8.22
         version: 0.8.22(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(zustand@5.0.2(@types/react@19.0.2)(react@19.0.0))
       '@zayne-labs/ui-react':
-        specifier: ^0.0.7
-        version: 0.0.7(@types/react@19.0.2)(react-dom@19.0.0(react@19.0.0))(react-hook-form@7.54.2(react@19.0.0))(react@19.0.0)(tailwind-merge@2.6.0)
+        specifier: ^0.0.9
+        version: 0.0.9(@types/react@19.0.2)(react-dom@19.0.0(react@19.0.0))(react-hook-form@7.54.2(react@19.0.0))(react@19.0.0)(tailwind-merge@2.6.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1283,8 +1283,8 @@ packages:
   '@zayne-labs/tsconfig@0.2.1':
     resolution: {integrity: sha512-nm8ePOZae5wPaYkXJiH382jUroUfTjfrSwLfKBkvMaIBp1mOB5awAkPRpsXA+RHU3sBlJnASZknnfgmQiQBO2g==}
 
-  '@zayne-labs/ui-react@0.0.7':
-    resolution: {integrity: sha512-CLIEWmun42seCWskMbbUfu9cMy0kg0nSptSfDobLWggcSRq1nu/jpucfvaEd4tSMgu1xfDpHcFyP7sboep9PqQ==}
+  '@zayne-labs/ui-react@0.0.9':
+    resolution: {integrity: sha512-Ye4Q+SWHFC7PIHzIrwJJJMWQaHiSOdcSkS9ZPPjQWn5cBKluMfuffnMSaxJa3XjHaLYkNUPm5EZWeFpEI2kc8w==}
     engines: {node: '>=18.x'}
     peerDependencies:
       react: '>=18.0.0'
@@ -4488,7 +4488,7 @@ snapshots:
 
   '@zayne-labs/tsconfig@0.2.1': {}
 
-  '@zayne-labs/ui-react@0.0.7(@types/react@19.0.2)(react-dom@19.0.0(react@19.0.0))(react-hook-form@7.54.2(react@19.0.0))(react@19.0.0)(tailwind-merge@2.6.0)':
+  '@zayne-labs/ui-react@0.0.9(@types/react@19.0.2)(react-dom@19.0.0(react@19.0.0))(react-hook-form@7.54.2(react@19.0.0))(react@19.0.0)(tailwind-merge@2.6.0)':
     dependencies:
       '@zayne-labs/toolkit-core': 0.8.22
       '@zayne-labs/toolkit-react': 0.8.22(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(zustand@5.0.2(@types/react@19.0.2)(react@19.0.0))

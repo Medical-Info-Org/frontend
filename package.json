@@ -3,7 +3,7 @@
 	"type": "module",
 	"version": "0.1.0",
 	"private": true,
-	"packageManager": "pnpm@9.14.2",
+	"packageManager": "pnpm@9.15.2",
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev -p 8000 --turbo",
@@ -22,7 +22,7 @@
 		"@radix-ui/react-select": "^2.1.4",
 		"@zayne-labs/callapi": "1.0.0-rc.72",
 		"@zayne-labs/toolkit": "^0.8.22",
-		"@zayne-labs/ui-react": "^0.0.7",
+		"@zayne-labs/ui-react": "^0.0.9",
 		"clsx": "^2.1.1",
 		"date-fns": "^4.1.0",
 		"next": "15.1.3",
