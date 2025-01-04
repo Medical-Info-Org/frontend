@@ -5,7 +5,7 @@ import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin } from "@/lib/utils/cn";
 import { feature1, feature2, feature3, hero } from "@/public/assets/images/landing-page";
-import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
+import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
 import { AccordionComponent } from "./_components";
 import { ScrollableTipCards } from "./daily-tips/DailyTipCard";
@@ -59,16 +59,16 @@ const advantages = [
 	},
 ];
 
-const [CoreServiceList] = getElementList();
-const [FeatureList] = getElementList();
-const [AdvantageList] = getElementList();
-
 async function HomePage() {
 	const allTips = await callBackendApi<TipsResponse>("/dailyTips/tips");
 
 	if (allTips.error) {
 		console.error(allTips.error.errorData);
 	}
+
+	const [CoreServiceList] = getElementList();
+	const [FeatureList] = getElementList();
+	const [AdvantageList] = getElementList();
 
 	return (
 		<Main className="w-full gap-14 max-md:max-w-[400px] md:gap-[92px]">
@@ -174,9 +174,9 @@ async function HomePage() {
 					className="mt-12 grid grid-cols-2 justify-center gap-x-5 gap-y-10 text-center md:mt-[88px]
 						md:grid-cols-[repeat(4,_minmax(161px,248px))] md:justify-between md:gap-x-[28px]"
 					each={features}
-					render={(feature) => (
+					render={(feature, index) => (
 						<li
-							key={feature.title}
+							key={index}
 							className="relative flex flex-col items-center justify-center rounded-[16px] border
 								border-medinfo-primary-main px-[3.5px] py-[54px] text-medinfo-primary-main
 								md:px-[47px] md:py-[67px]"
@@ -203,8 +203,8 @@ async function HomePage() {
 				<AdvantageList
 					className="mt-6 flex flex-col gap-6 md:mt-14 md:flex-row md:gap-[28px]"
 					each={advantages}
-					render={(advantage) => (
-						<li key={advantage.title}>
+					render={(advantage, index) => (
+						<li key={index}>
 							<span
 								className="block size-[92px] rounded-[16px] bg-medinfo-primary-subtle p-6
 									text-[44px] text-medinfo-primary-main"

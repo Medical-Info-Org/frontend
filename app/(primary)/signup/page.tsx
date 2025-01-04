@@ -260,7 +260,7 @@ function SignUpPage(props: { searchParams: Promise<Record<string, string | strin
 								/>
 							</Form.Item>
 
-							<Show when={user === "doctor"}>
+							<Show.Root when={user === "doctor"}>
 								<Form.Item
 									control={control}
 									name="specialty"
@@ -320,9 +320,9 @@ function SignUpPage(props: { searchParams: Promise<Record<string, string | strin
 										)}
 									/>
 								</Form.Item>
-							</Show>
+							</Show.Root>
 
-							<Show when={user === "doctor"}>
+							<Show.Root when={user === "doctor"}>
 								<Form.Item
 									control={control}
 									name="license"
@@ -348,9 +348,9 @@ function SignUpPage(props: { searchParams: Promise<Record<string, string | strin
 										)}
 									/>
 								</Form.Item>
-							</Show>
+							</Show.Root>
 
-							<Show when={user === "patient"}>
+							<Show.Root when={user === "patient"}>
 								<Form.Item control={control} name="dob" className="gap-1 font-roboto font-medium">
 									<Form.Label className="md:text-[20px]">Date of Birth</Form.Label>
 
@@ -367,7 +367,7 @@ function SignUpPage(props: { searchParams: Promise<Record<string, string | strin
 										)}
 									/>
 								</Form.Item>
-							</Show>
+							</Show.Root>
 
 							<Form.Item
 								control={control}
@@ -416,7 +416,7 @@ function SignUpPage(props: { searchParams: Promise<Record<string, string | strin
 							</Form.Item>
 
 							<article className="flex flex-col items-center gap-[14px] md:mt-[14px] md:gap-7">
-								<Show when={user === "patient"}>
+								<Show.Root when={user === "patient"}>
 									<p className="font-roboto text-medinfo-dark-4 md:text-[20px]">Or</p>
 
 									<div className="flex gap-8">
@@ -441,7 +441,7 @@ function SignUpPage(props: { searchParams: Promise<Record<string, string | strin
 											/>
 										</Button>
 									</div>
-								</Show>
+								</Show.Root>
 
 								<Button
 									type="submit"

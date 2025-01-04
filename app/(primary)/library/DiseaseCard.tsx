@@ -5,8 +5,8 @@ import { Button, Card } from "@/components/ui";
 import type { Disease, DiseasesResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin } from "@/lib/utils/cn";
 import { tipPlaceHolder } from "@/public/assets/images/landing-page";
-import { useDragScroll } from "@zayne-labs/toolkit/react/ui/drag-scroll";
-import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
+import { useDragScroll } from "@zayne-labs/ui-react/drag-scroll";
+import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
 
 export type DiseaseCardProps = {
@@ -16,7 +16,7 @@ export type DiseaseCardProps = {
 
 export function DiseaseCard({ type, disease }: DiseaseCardProps) {
 	return (
-		<Card
+		<Card.Root
 			as="li"
 			className={cnJoin(
 				type === "grid" && "relative h-full max-lg:max-h-[176px]",
@@ -82,7 +82,7 @@ export function DiseaseCard({ type, disease }: DiseaseCardProps) {
 					<IconBox icon="lucide:chevron-right" className="size-5 lg:size-6" />
 				</NavLink>
 			</Card.Content>
-		</Card>
+		</Card.Root>
 	);
 }
 
@@ -104,7 +104,7 @@ export function AlternateDiseaseCard(props: AlternateDiseaseCardProps) {
 	const { type, disease, linkToAd, className } = props;
 
 	return (
-		<Card
+		<Card.Root
 			as="li"
 			className={cnJoin(
 				type === "grid" && "flex max-w-[161px] shrink-0 flex-col lg:max-w-[340px]",
@@ -183,7 +183,7 @@ export function AlternateDiseaseCard(props: AlternateDiseaseCardProps) {
 					</NavLink>
 				)}
 			</Card.Content>
-		</Card>
+		</Card.Root>
 	);
 }
 

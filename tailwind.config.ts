@@ -2,13 +2,13 @@ import typographyPlugin from "@tailwindcss/typography";
 import { withTV } from "tailwind-variants/transformer";
 import type { Config } from "tailwindcss";
 import animationPlugin from "tailwindcss-animate";
-import plugin from "tailwindcss/plugin";
+import definePlugin from "tailwindcss/plugin";
 
 const tailwindConfig = withTV({
 	content: [
 		"./app/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
-		"./node_modules/@zayne-labs/toolkit/dist/esm/react/**/*.js",
+		"./node_modules/@zayne-labs/ui-react/dist/esm/**/*.js",
 	],
 
 	theme: {
@@ -124,7 +124,7 @@ const tailwindConfig = withTV({
 		typographyPlugin,
 		animationPlugin,
 		// eslint-disable-next-line ts-eslint/unbound-method
-		plugin(({ addComponents }) => {
+		definePlugin(({ addComponents }) => {
 			const scrollNone = {
 				".scrollbar-none": {
 					"-ms-overflow-style": "none" /* IE and Edge */,
@@ -175,6 +175,6 @@ const tailwindConfig = withTV({
 			addComponents([scrollNone, navLinkTransition]);
 		}),
 	],
-}) satisfies Config;
+} satisfies Config);
 
 export default tailwindConfig;
