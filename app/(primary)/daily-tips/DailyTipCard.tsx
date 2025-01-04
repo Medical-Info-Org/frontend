@@ -4,8 +4,8 @@ import { IconBox, NavLink } from "@/components/common";
 import { Card } from "@/components/ui";
 import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnMerge } from "@/lib/utils/cn";
-import { useDragScroll } from "@zayne-labs/toolkit/react/ui/drag-scroll";
-import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
+import { useDragScroll } from "@zayne-labs/ui-react/drag-scroll";
+import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
 
 export type DailyTipCardProps = {
@@ -17,7 +17,7 @@ export type DailyTipCardProps = {
 
 export function DailyTipCard({ className, id, imageUrl, title }: DailyTipCardProps) {
 	return (
-		<Card
+		<Card.Root
 			as="li"
 			className={cnMerge(
 				`flex w-[161px] shrink-0 flex-col gap-3 rounded-[16px] border-[1.4px] border-medinfo-light-1
@@ -44,7 +44,7 @@ export function DailyTipCard({ className, id, imageUrl, title }: DailyTipCardPro
 					<IconBox icon="material-symbols:play-arrow" className="text-[20px]" />
 				</NavLink>
 			</Card.Footer>
-		</Card>
+		</Card.Root>
 	);
 }
 

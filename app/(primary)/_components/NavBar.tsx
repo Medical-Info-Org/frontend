@@ -5,7 +5,7 @@ import { HamburgerIcon, SearchIcon, XIcon } from "@/components/icons";
 import { Button } from "@/components/ui";
 import { cnMerge } from "@/lib/utils/cn";
 import { useToggle } from "@zayne-labs/toolkit/react";
-import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
+import { getElementList } from "@zayne-labs/ui-react/for";
 
 function NavBar() {
 	const [isNavShow, toggleNavShow] = useToggle(false);
@@ -33,7 +33,7 @@ function NavBar() {
 
 export default NavBar;
 
-const links = [
+const linkItems = [
 	{ href: "/", title: "Home" },
 	{ href: "/library", title: "Library" },
 	{ href: "/about", title: "About us" },
@@ -48,10 +48,10 @@ function DesktopNavigation({ className }: { className?: string }) {
 			<NavList
 				as="nav"
 				className="mx-auto flex min-w-fit gap-14 text-[22px] font-medium"
-				each={links}
-				render={(link) => (
-					<NavLink transitionType="navbar" href={link.href}>
-						{link.title}
+				each={linkItems}
+				render={(linkItem) => (
+					<NavLink key={linkItem.title} transitionType="navbar" href={linkItem.href}>
+						{linkItem.title}
 					</NavLink>
 				)}
 			/>
@@ -97,10 +97,10 @@ function MobileNavigation(props: MobileNavProps) {
 			<NavList
 				as="nav"
 				className="flex flex-col items-center gap-5 text-nowrap font-medium lg:text-[22px]"
-				each={links}
-				render={(link) => (
-					<NavLink transitionType="navbar" href={link.href}>
-						{link.title}
+				each={linkItems}
+				render={(linkItem) => (
+					<NavLink key={linkItem.title} transitionType="navbar" href={linkItem.href}>
+						{linkItem.title}
 					</NavLink>
 				)}
 			/>

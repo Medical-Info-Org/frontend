@@ -1,7 +1,7 @@
 import { Main } from "@/app/_components";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { DiseasesResponse, SingleDisease } from "@/lib/api/callBackendApi/types";
-import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
+import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
 import { AlternateDiseaseCard, ScrollableAlternateDiseaseCards } from "../../DiseaseCard";
 
@@ -60,7 +60,6 @@ async function TipDetailsPage(props: { params: Promise<{ name: string }> }) {
 				<article>
 					<h4>Symptoms</h4>
 					<List
-						as="ul"
 						className="pl-12"
 						each={oneDisease.data.Symptoms}
 						render={(symptom) => <li className="list-['-_']">{symptom}</li>}
@@ -70,7 +69,6 @@ async function TipDetailsPage(props: { params: Promise<{ name: string }> }) {
 				<article>
 					<h4>Precautions</h4>
 					<List
-						as="ul"
 						className="pl-12"
 						each={oneDisease.data.Precautions}
 						render={(precaution) => <li className="list-['-_']">{precaution}</li>}

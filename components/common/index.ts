@@ -1,7 +1,7 @@
 export { default as Logo } from "./Logo/logo";
 export { IconBox } from "./IconBox";
 export { default as SonnerToaster } from "./Toaster";
-export { default as Show } from "./Show";
+export { Show } from "./Show";
 export { Switch } from "./Switch";
 export { default as Overlay } from "./Overlay";
 export { default as NavLink } from "./NavLink";

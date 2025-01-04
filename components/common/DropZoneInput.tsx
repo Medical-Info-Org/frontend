@@ -1,15 +1,15 @@
 "use client";
 
+import { Switch } from "@/components/common/Switch";
 import { cnMerge } from "@/lib/utils/cn";
 import { toArray } from "@zayne-labs/toolkit/core";
-import { DropZone, type UseDropZoneProps } from "@zayne-labs/toolkit/react/ui/drop-zone";
-import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
 import { isFile, isString } from "@zayne-labs/toolkit/type-helpers";
+import { DropZone, type UseDropZoneProps } from "@zayne-labs/ui-react/drop-zone";
+import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { IconBox } from "./IconBox";
-import { Switch } from "./Switch";
 
 type FileOrNull = File | null;
 
@@ -109,7 +109,7 @@ export function DropZoneImagePreview(props: ImagePreviewProps) {
 						)}
 					>
 						<div className="flex min-h-[66px] min-w-0 items-center gap-4">
-							<Switch>
+							<Switch.Root>
 								<Switch.Match
 									when={(isFile(file) && file.type.startsWith("image")) || isString(file)}
 								>
@@ -137,7 +137,7 @@ export function DropZoneImagePreview(props: ImagePreviewProps) {
 										<IconBox icon="solar:file-outline" className="size-full" />
 									</span>
 								</Switch.Default>
-							</Switch>
+							</Switch.Root>
 
 							{isFile(file) && <p className="truncate">{file.name}</p>}
 						</div>

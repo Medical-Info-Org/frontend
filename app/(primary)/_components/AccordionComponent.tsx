@@ -3,7 +3,7 @@
 
 import { ChevronDownIcon } from "@/components/icons";
 import { Accordion } from "@/components/ui";
-import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
+import { getElementList } from "@zayne-labs/ui-react/for";
 
 const FAQs = [
 	{
@@ -42,8 +42,8 @@ function AccordionComponent() {
 				className="mt-6 grid w-full gap-2 md:mt-14 md:gap-4"
 				each={FAQs}
 				render={(FAQ) => (
-					<Accordion.Item key={FAQ.question} value={FAQ.answer} asChild={true}>
-						<li>
+					<Accordion.Item value={FAQ.answer} asChild={true}>
+						<li key={FAQ.question}>
 							<Accordion.Trigger
 								withDefaultIcon={false}
 								classNames={{

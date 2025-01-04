@@ -5,7 +5,7 @@ import { IconBox } from "@/components/common";
 import { Button, DatePicker, Form, Select } from "@/components/ui";
 import { appointmentPlaceholder } from "@/public/assets/images/dashboard";
 import { Steps } from "@ark-ui/react/steps";
-import { getElementList } from "@zayne-labs/toolkit/react/ui/for";
+import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 

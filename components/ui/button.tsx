@@ -2,7 +2,7 @@
 
 import type { Prettify } from "@zayne-labs/toolkit/type-helpers";
 import { type VariantProps, tv } from "tailwind-variants";
-import { Slot } from "@zayne-labs/toolkit/react/ui/slot";
+import { Slot } from "@zayne-labs/ui-react/slot";
 
 // prettier-ignore
 export type ButtonProps = Prettify<{

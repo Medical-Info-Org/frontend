@@ -124,7 +124,7 @@ function SignInPage(props: { searchParams: Promise<Record<string, string | strin
 							</Form.Item>
 
 							<article className="flex flex-col items-center gap-[14px] md:mt-[14px] md:gap-7">
-								<Show when={user !== "doctor"}>
+								<Show.Root when={user !== "doctor"}>
 									<p className="text-medinfo-dark-4 md:text-[20px]">Or</p>
 
 									<div className="flex gap-8">
@@ -149,7 +149,7 @@ function SignInPage(props: { searchParams: Promise<Record<string, string | strin
 											/>
 										</Button>
 									</div>
-								</Show>
+								</Show.Root>
 
 								<Button
 									type="submit"
