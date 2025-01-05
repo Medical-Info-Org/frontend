@@ -1,6 +1,6 @@
 "use client";
 
-import { Main } from "@/app/_components";
+import { Main } from "@/app/(primary)/_components";
 import { IconBox, NavLink } from "@/components/common";
 import { Button, Form } from "@/components/ui";
 import { cnJoin } from "@/lib/utils/cn";

@@ -1,4 +1,4 @@
-import { Main } from "@/app/_components";
+import { Main } from "@/app/(primary)/_components";
 import { type SingleTip, type TipsResponse, callBackendApi } from "@/lib/api/callBackendApi";
 import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
