@@ -1,6 +1,6 @@
 "use client";
 
-import { Main } from "@/app/_components";
+import { Main } from "@/app/(primary)/_components";
 import { DropZoneImagePreview, DropZoneInput, IconBox, Logo, NavLink, Show } from "@/components/common";
 import { Button, DatePicker, Form, Select } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
@@ -421,10 +421,10 @@ function SignUpPage(props: { searchParams: Promise<Record<string, string | strin
 
 									<div className="flex gap-8">
 										<Button
-											asChild={true}
 											size="icon"
 											theme="secondary"
 											className="rounded-[8px]"
+											asChild={true}
 										>
 											<Link href="https://medinfo-backend-xie7.onrender.com/auth/google">
 												<IconBox
@@ -447,6 +447,7 @@ function SignUpPage(props: { searchParams: Promise<Record<string, string | strin
 									type="submit"
 									isLoading={methods.formState.isSubmitting}
 									disabled={methods.formState.isSubmitting}
+									isDisabled={false}
 								>
 									Sign Up
 								</Button>

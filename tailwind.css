@@ -27,10 +27,15 @@
 		--color-dark-3: hsl(0, 0%, 45%);
 		--color-dark-4: hsl(0, 0%, 55%);
 
-		--color-error-main: hsl(0, 100%, 62%);
-		--color-error-darker: hsl(0, 78%, 55%);
-		--color-error-lighter: hsl(0, 100%, 68%);
-		--color-error-subtle: hsl(0, 100%, 75%);
+		--color-state-error-main: hsl(0, 100%, 62%);
+		--color-state-error-darker: hsl(0, 78%, 55%);
+		--color-state-error-lighter: hsl(0, 100%, 68%);
+		--color-state-error-subtle: hsl(0, 100%, 75%);
+
+		--color-state-success-main: hsl(154, 94%, 39%);
+		--color-state-success-darker: hsl(154, 94%, 34%);
+		--color-state-success-lighter: hsl(151, 68%, 54%);
+		--color-state-success-subtle: hsl(150, 70%, 63%);
 
 		--color-disabled-fill: hsl(0, 0%, 93%);
 

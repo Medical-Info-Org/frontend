@@ -50,6 +50,22 @@ const tailwindConfig = withTV({
 						"4": "var(--color-dark-4)",
 					},
 
+					state: {
+						success: {
+							main: "var(--color-state-success-main)",
+							darker: "var(--color-state-success-darker)",
+							lighter: "var(--color-state-success-lighter)",
+							subtle: "var(--color-state-success-subtle)",
+						},
+
+						error: {
+							main: "var(--color-state-error-main)",
+							darker: "var(--color-state-error-darker)",
+							lighter: "var(--color-state-error-lighter)",
+							subtle: "var(--color-state-error-subtle)",
+						},
+					},
+
 					"disabled-fill": "var(--color-disabled-fill)",
 
 					"body-color": "var(--color-body-color)",

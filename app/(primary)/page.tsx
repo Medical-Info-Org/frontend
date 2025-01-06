@@ -1,4 +1,3 @@
-import { Main } from "@/app/_components";
 import { IconBox, NavLink } from "@/components/common";
 import { Button } from "@/components/ui";
 import { callBackendApi } from "@/lib/api/callBackendApi";
@@ -7,7 +6,7 @@ import { cnJoin } from "@/lib/utils/cn";
 import { feature1, feature2, feature3, hero } from "@/public/assets/images/landing-page";
 import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
-import { AccordionComponent } from "./_components";
+import { AccordionComponent, Main } from "./_components";
 import { ScrollableTipCards } from "./daily-tips/DailyTipCard";
 
 const coreServices = [

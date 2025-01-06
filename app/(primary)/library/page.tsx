@@ -1,4 +1,4 @@
-import { Main } from "@/app/_components";
+import { Main } from "@/app/(primary)/_components";
 import { NavLink } from "@/components/common";
 import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { DiseasesResponse } from "@/lib/api/callBackendApi/types";
