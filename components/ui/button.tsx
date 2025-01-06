@@ -62,11 +62,13 @@ const buttonVariants = tv(
 			},
 			{
 				theme: "primary",
+				isDisabled: false,
 				withInteractions: true,
 				className: "hover:bg-medinfo-primary-darker active:bg-medinfo-primary-lighter",
 			},
 			{
 				theme: "secondary",
+				isDisabled: false,
 				withInteractions: true,
 				className: `hover:border-medinfo-primary-darker active:border-medinfo-primary-lighter
 				active:text-medinfo-primary-lighter`,
@@ -98,7 +100,7 @@ function Button(props: ButtonProps) {
 		disabled,
 		asChild,
 		isLoading = false,
-		isDisabled = false,
+		isDisabled = disabled,
 		children,
 		unstyled,
 		withInteractions = true,

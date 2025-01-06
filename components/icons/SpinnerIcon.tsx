@@ -42,8 +42,8 @@ export const GreenSpinnerIcon = (props: React.SVGProps<SVGSVGElement>) => (
 		{...props}
 	>
 		<path
-			fill-rule="evenodd"
-			clip-rule="evenodd"
+			fillRule="evenodd"
+			clipRule="evenodd"
 			d="M24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24C0 37.2548 10.7452 48 24 48ZM24.0007 41.28C33.5442 41.28 41.2807 33.5435 41.2807 24C41.2807 14.4565 33.5442 6.72 24.0007 6.72C14.4572 6.72 6.7207 14.4565 6.7207 24C6.7207 33.5435 14.4572 41.28 24.0007 41.28Z"
 			fill="url(#paint0_angular_2716_12823)"
 		/>
@@ -57,8 +57,8 @@ export const GreenSpinnerIcon = (props: React.SVGProps<SVGSVGElement>) => (
 				gradientUnits="userSpaceOnUse"
 				gradientTransform="translate(24 24) rotate(90) scale(24)"
 			>
-				<stop stop-color="#344E41" />
-				<stop offset="1" stop-color="#344E41" stop-opacity="0" />
+				<stop stopColor="#344E41" />
+				<stop offset="1" stopColor="#344E41" stopOpacity="0" />
 			</radialGradient>
 		</defs>
 	</svg>

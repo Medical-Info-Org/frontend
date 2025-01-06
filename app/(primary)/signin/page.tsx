@@ -155,6 +155,7 @@ function SignInPage(props: { searchParams: Promise<Record<string, string | strin
 									type="submit"
 									isLoading={methods.formState.isSubmitting}
 									disabled={methods.formState.isSubmitting}
+									isDisabled={false}
 								>
 									Sign In
 								</Button>

@@ -1,8 +1,10 @@
 "use client";
 
-import { IconBox } from "@/components/common";
+import { IconBox, Show } from "@/components/common";
+import { CloseIcon, GreenSpinnerIcon } from "@/components/icons";
 import { Button, DatePicker, Dialog, Form, Select } from "@/components/ui";
-import { appointmentPlaceholder } from "@/public/assets/images/dashboard";
+import { cnMerge } from "@/lib/utils/cn";
+import { appointmentPlaceholder, doctorAvatar } from "@/public/assets/images/dashboard";
 import { Steps } from "@ark-ui/react/steps";
 import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
@@ -42,12 +44,12 @@ function AppointmentPage() {
 
 			<Form.Root methods={methods} onSubmit={(event) => void methods.handleSubmit(() => {})(event)}>
 				<Steps.Root
-					className="flex flex-col gap-8 rounded-[16px] p-4 shadow-[0_4px_6px_hsl(150,20%,25%,0.25)]
-						md:p-8"
 					count={stepperItems.length}
 					linear={true}
+					className="flex flex-col gap-8 rounded-[16px] p-4 shadow-[0_4px_6px_hsl(150,20%,25%,0.25)]
+						md:p-8"
 				>
-					<StepsList />
+					<StepperList className="mb-7" />
 
 					<section className="flex flex-col gap-[64px] max-md:items-center">
 						<div className="flex gap-5">
@@ -502,16 +504,8 @@ function AppointmentPage() {
 								</Steps.NextTrigger>
 							</Dialog.Trigger>
 						</div>
-						<Dialog.Content className="max-w-[292px]">
-							<Dialog.Header>
-								<Dialog.Title>Book Appointment</Dialog.Title>
 
-								<Dialog.Description>
-									Please fill out the form below to book an appointment with Dr. Tezon.
-								</Dialog.Description>
-							</Dialog.Header>
-						</Dialog.Content>
-						E
+						<DialogMainContent />
 					</Dialog.Root>
 				</Steps.Root>
 			</Form.Root>
@@ -519,22 +513,30 @@ function AppointmentPage() {
 	);
 }
 
-function StepsList() {
+function StepperList(props: { className?: string }) {
+	const { className } = props;
 	const [ForList] = getElementList();
 
 	return (
-		<Steps.List className="flex justify-center" asChild={true}>
+		<Steps.List className={cnMerge("flex justify-center", className)} asChild={true}>
 			<ForList
 				each={stepperItems}
 				render={(item, index) => (
 					<Steps.Item key={index} index={index} className="flex items-center">
-						{index !== 0 && <Steps.Separator className="h-[2px] w-[82px] bg-medinfo-light-2" />}
+						{index !== 0 && (
+							<Steps.Separator
+								className="h-[2px] w-[82px] bg-medinfo-light-2
+									data-[current]:bg-medinfo-primary-main md:h-1 md:w-[200px]"
+							/>
+						)}
 
-						<Steps.Trigger type="button" className="relative flex flex-col items-center">
+						<Steps.Trigger className="relative flex flex-col items-center">
 							<Steps.Indicator
 								className="flex size-6 items-center justify-center rounded-full border-[1.4px]
 									border-[hsl(150,20%,95%)] bg-[hsl(150,20%,95%)] text-[10px]
-									text-medinfo-secondary-darker data-[current]:border-medinfo-primary-main
+									text-medinfo-secondary-darker data-[complete]:border-medinfo-primary-main
+									data-[current]:border-medinfo-primary-main
+									data-[complete]:text-medinfo-primary-main
 									data-[current]:text-medinfo-primary-main md:size-12 md:text-[20px]"
 							>
 								{index + 1}
@@ -542,7 +544,8 @@ function StepsList() {
 
 							<span
 								className="absolute top-[calc(theme(spacing.6)_+_2px)] text-nowrap text-[10px]
-									italic text-medinfo-dark-3 md:top-[calc(theme(spacing.12)_+_2px)]"
+									italic text-medinfo-dark-3 md:top-[calc(theme(spacing.12)_+_2px)]
+									md:text-[14px]"
 							>
 								{item.title}
 							</span>
@@ -551,6 +554,91 @@ function StepsList() {
 				)}
 			/>
 		</Steps.List>
+	);
+}
+
+function DialogMainContent() {
+	const isLoading = false;
+
+	return (
+		<Show.Root when={isLoading}>
+			<Show.Content>
+				<Dialog.Content
+					onPointerDownOutside={(e) => e.preventDefault()}
+					className="flex w-[292px] flex-col gap-2 rounded-[16px] px-6 pb-[56px] pt-6
+						md:max-w-[372px]"
+					withCloseBtn={false}
+				>
+					<Dialog.Close className="self-end" asChild={true}>
+						<Steps.PrevTrigger>
+							<CloseIcon />
+						</Steps.PrevTrigger>
+					</Dialog.Close>
+
+					<Dialog.Header className="items-center gap-8">
+						<GreenSpinnerIcon className="animate-spin md:size-[100px]" />
+
+						<Dialog.Title className="text-center text-base font-normal text-medinfo-dark-4 md:px-4">
+							Matching you to a doctor, please hold on.
+						</Dialog.Title>
+					</Dialog.Header>
+				</Dialog.Content>
+			</Show.Content>
+
+			<Show.OtherWise>
+				<Dialog.Content
+					onPointerDownOutside={(e) => e.preventDefault()}
+					className="flex max-w-[341px] flex-col gap-8 rounded-[16px] px-6 py-8 md:max-w-[650px]
+						md:gap-9 md:px-10"
+					withCloseBtn={false}
+				>
+					<StepperList className="mb-4 md:mb-6" />
+
+					<Dialog.Header className="flex flex-col items-center gap-2">
+						<figure className="flex flex-col items-center gap-2">
+							<Image
+								src={doctorAvatar as string}
+								className="size-[72px]"
+								width={72}
+								height={72}
+								alt=""
+							/>
+
+							<figcaption className="flex items-center gap-1">
+								<p className="text-medinfo-dark-3">Dr Jane Doe</p>
+
+								<span className="size-4">
+									<IconBox
+										icon="solar:verified-check-linear"
+										className="size-full text-medinfo-state-success-main"
+									/>
+								</span>
+							</figcaption>
+						</figure>
+
+						<Dialog.Title className="text-[18px] font-bold text-medinfo-dark-3">
+							Primary health care specialist
+						</Dialog.Title>
+					</Dialog.Header>
+
+					<Dialog.Footer className="flex flex-col items-center gap-3 md:gap-5">
+						<div className="flex flex-col items-center gap-4 md:flex-row-reverse md:gap-6">
+							<Button type="submit" theme="primary">
+								Accept
+							</Button>
+
+							<Dialog.Close className="text-medinfo-primary-main md:text-[20px]" asChild={true}>
+								<Steps.PrevTrigger>Decline & ask for rematch</Steps.PrevTrigger>
+							</Dialog.Close>
+						</div>
+
+						<p className="text-[14px] text-medinfo-dark-4">
+							You have only <span className="text-medinfo-dark-1">3</span> rematches left
+						</p>
+					</Dialog.Footer>
+				</Dialog.Content>
+			</Show.OtherWise>
+		</Show.Root>
 	);
 }
 

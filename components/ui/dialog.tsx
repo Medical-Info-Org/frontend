@@ -18,8 +18,8 @@ function DialogOverlay(props: InferProps<typeof DialogPrimitive.Overlay>) {
 	);
 }
 
-function DialogContent(props: InferProps<typeof DialogPrimitive.Content>) {
-	const { className, children, ...restOfProps } = props;
+function DialogContent(props: InferProps<typeof DialogPrimitive.Content> & { withCloseBtn?: boolean }) {
+	const { className, children, withCloseBtn = true, ...restOfProps } = props;
 
 	return (
 		<DialogPrimitive.Portal>
@@ -40,15 +40,17 @@ function DialogContent(props: InferProps<typeof DialogPrimitive.Content>) {
 			>
 				{children}
 
-				<DialogPrimitive.Close
-					className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-shadcn-background
-						transition-opacity hover:opacity-100 focus:outline-none focus:ring-2
-						focus:ring-shadcn-ring focus:ring-offset-2 disabled:pointer-events-none
-						data-[state=open]:bg-shadcn-accent data-[state=open]:text-shadcn-muted-foreground"
-				>
-					<IconBox icon="lucide:x" className="size-4" />
-					<span className="sr-only">Close</span>
-				</DialogPrimitive.Close>
+				{withCloseBtn && (
+					<DialogPrimitive.Close
+						className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-shadcn-background
+							transition-opacity hover:opacity-100 focus:outline-none focus:ring-2
+							focus:ring-shadcn-ring focus:ring-offset-2 disabled:pointer-events-none
+							data-[state=open]:bg-shadcn-accent data-[state=open]:text-shadcn-muted-foreground"
+					>
+						<IconBox icon="lucide:x" className="size-4" />
+						<span className="sr-only">Close</span>
+					</DialogPrimitive.Close>
+				)}
 			</DialogPrimitive.Content>
 		</DialogPrimitive.Portal>
 	);
@@ -59,7 +61,7 @@ function DialogHeader(props: InferProps<"div">) {
 
 	return (
 		<div
-			className={cnMerge("flex flex-col space-y-1.5 text-center sm:text-left", className)}
+			className={cnMerge("flex flex-col gap-1.5 text-center sm:text-left", className)}
 			{...restOfProps}
 		/>
 	);
@@ -68,12 +70,7 @@ function DialogHeader(props: InferProps<"div">) {
 function DialogFooter(props: InferProps<"div">) {
 	const { className, ...restOfProps } = props;
 
-	return (
-		<div
-			className={cnMerge("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)}
-			{...restOfProps}
-		/>
-	);
+	return <div className={cnMerge("flex flex-col", className)} {...restOfProps} />;
 }
 
 function DialogTitle(props: InferProps<typeof DialogPrimitive.Title>) {
