@@ -14,7 +14,7 @@ export type ButtonProps = Prettify<{
 
 const buttonVariants = tv(
 	{
-		base: "grid items-center justify-center rounded-[8px]",
+		base: "flex items-center justify-center rounded-[8px]",
 
 		variants: {
 			theme: {

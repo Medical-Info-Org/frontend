@@ -460,7 +460,7 @@ function AppointmentPage() {
 							<Form.Item
 								control={methods.control}
 								name="allowInfoDisclosure"
-								className="flex-row-reverse justify-end gap-2"
+								className="flex-row-reverse items-center justify-end gap-2"
 							>
 								<Form.Label className="md:text-[20px]">
 									Agreement to disclose medical information to appropriate healthcare
