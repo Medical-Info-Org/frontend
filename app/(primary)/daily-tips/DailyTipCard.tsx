@@ -4,8 +4,8 @@ import { IconBox, NavLink } from "@/components/common";
 import { Card } from "@/components/ui";
 import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnMerge } from "@/lib/utils/cn";
+import { getElementList } from "@zayne-labs/ui-react/common/for";
 import { useDragScroll } from "@zayne-labs/ui-react/drag-scroll";
-import { getElementList } from "@zayne-labs/ui-react/for";
 import Image from "next/image";
 
 export type DailyTipCardProps = {

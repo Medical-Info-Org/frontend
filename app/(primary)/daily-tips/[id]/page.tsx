@@ -1,6 +1,6 @@
 import { Main } from "@/app/(primary)/_components";
 import { type SingleTip, type TipsResponse, callBackendApi } from "@/lib/api/callBackendApi";
-import { getElementList } from "@zayne-labs/ui-react/for";
+import { getElementList } from "@zayne-labs/ui-react/common/for";
 import Image from "next/image";
 import { ScrollableTipCards } from "../DailyTipCard";
 import HealthFinderLogo from "../HealthFinderLogo";
@@ -53,10 +53,10 @@ async function TipExpandedPage(props: { params: Promise<{ id: string }> }) {
 								{item.Title}
 							</h4>
 
-							{/* eslint-disable-next-line react-dom/no-dangerously-set-innerhtml */}
 							<div
 								className="prose max-w-[80ch] [&>h4]:text-[18px] [&>h4]:font-medium
 									[&>h4]:text-medinfo-primary-main [&>p]:text-pretty"
+								// eslint-disable-next-line react-dom/no-dangerously-set-innerhtml
 								dangerouslySetInnerHTML={{ __html: item.Content }}
 							/>
 						</div>

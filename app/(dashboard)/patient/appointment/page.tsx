@@ -6,7 +6,7 @@ import { Button, DatePicker, Dialog, Form, Select } from "@/components/ui";
 import { cnMerge } from "@/lib/utils/cn";
 import { appointmentPlaceholder, doctorAvatar } from "@/public/assets/images/dashboard";
 import { Steps } from "@ark-ui/react/steps";
-import { getElementList } from "@zayne-labs/ui-react/for";
+import { getElementList } from "@zayne-labs/ui-react/common/for";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { Main } from "../../_components";
@@ -23,7 +23,7 @@ function AppointmentPage() {
 			dob: "",
 			reason: "",
 			dateTime: "",
-			language: "",
+			language: "English",
 			existingConditions: "",
 			allergies: "",
 			healthInsurance: "",
@@ -277,7 +277,7 @@ function AppointmentPage() {
 
 								<Form.Item
 									control={methods.control}
-									name="gender"
+									name="language"
 									className="gap-1 font-roboto font-medium"
 								>
 									<Form.Label className="text-medinfo-dark-4 md:text-[20px]">Language</Form.Label>
@@ -332,7 +332,7 @@ function AppointmentPage() {
 
 						<div className="flex flex-col gap-2">
 							<p className="text-[14px] text-medinfo-dark-4">Appointment will be held via</p>
-							<a className="inline-flex items-center gap-1 text-medinfo-primary-main">
+							<a className="flex items-center gap-1 text-medinfo-primary-main">
 								Google Meet <IconBox icon="logos:google-meet" className="size-5" />
 							</a>
 						</div>
@@ -460,7 +460,7 @@ function AppointmentPage() {
 							<Form.Item
 								control={methods.control}
 								name="allowInfoDisclosure"
-								className="flex-row-reverse justify-end gap-2"
+								className="flex-row-reverse items-center justify-end gap-2"
 							>
 								<Form.Label className="md:text-[20px]">
 									Agreement to disclose medical information to appropriate healthcare

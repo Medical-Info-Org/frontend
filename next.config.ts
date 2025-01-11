@@ -5,6 +5,9 @@ const nextConfig = {
 	devIndicators: {
 		appIsrStatus: false,
 	},
+	experimental: {
+		reactOwnerStack: true,
+	},
 	eslint: {
 		ignoreDuringBuilds: true,
 	},

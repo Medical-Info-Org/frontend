@@ -1,7 +1,7 @@
 "use client";
 
 import type { Prettify } from "@zayne-labs/toolkit/type-helpers";
-import { Slot, Slottable } from "@zayne-labs/ui-react/slot";
+import { Slot, Slottable } from "@zayne-labs/ui-react/common/slot";
 import { type VariantProps, tv } from "tailwind-variants";
 import { WhiteSpinnerIcon } from "../icons";
 
@@ -14,7 +14,7 @@ export type ButtonProps = Prettify<{
 
 const buttonVariants = tv(
 	{
-		base: "grid items-center justify-center rounded-[8px]",
+		base: "flex items-center justify-center rounded-[8px]",
 
 		variants: {
 			theme: {
