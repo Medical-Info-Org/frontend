@@ -3,7 +3,7 @@
 
 import { ChevronDownIcon } from "@/components/icons";
 import { Accordion } from "@/components/ui";
-import { getElementList } from "@zayne-labs/ui-react/for";
+import { getElementList } from "@zayne-labs/ui-react/common/for";
 
 const FAQs = [
 	{

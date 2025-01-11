@@ -5,7 +5,7 @@ import { HamburgerIcon, SearchIcon, XIcon } from "@/components/icons";
 import { Button } from "@/components/ui";
 import { cnMerge } from "@/lib/utils/cn";
 import { useToggle } from "@zayne-labs/toolkit/react";
-import { getElementList } from "@zayne-labs/ui-react/for";
+import { getElementList } from "@zayne-labs/ui-react/common/for";
 
 function NavBar() {
 	const [isNavShow, toggleNavShow] = useToggle(false);

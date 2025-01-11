@@ -6,7 +6,7 @@ import { Button, DatePicker, Dialog, Form, Select } from "@/components/ui";
 import { cnMerge } from "@/lib/utils/cn";
 import { appointmentPlaceholder, doctorAvatar } from "@/public/assets/images/dashboard";
 import { Steps } from "@ark-ui/react/steps";
-import { getElementList } from "@zayne-labs/ui-react/for";
+import { getElementList } from "@zayne-labs/ui-react/common/for";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { Main } from "../../_components";

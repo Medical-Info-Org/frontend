@@ -4,7 +4,7 @@ import { callBackendApi } from "@/lib/api/callBackendApi";
 import type { TipsResponse } from "@/lib/api/callBackendApi/types";
 import { cnJoin } from "@/lib/utils/cn";
 import { feature1, feature2, feature3, hero } from "@/public/assets/images/landing-page";
-import { getElementList } from "@zayne-labs/ui-react/for";
+import { getElementList } from "@zayne-labs/ui-react/common/for";
 import Image from "next/image";
 import { AccordionComponent, Main } from "./_components";
 import { ScrollableTipCards } from "./daily-tips/DailyTipCard";
