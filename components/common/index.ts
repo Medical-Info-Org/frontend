@@ -6,4 +6,4 @@ export { Switch } from "./Switch";
 export { default as Overlay } from "./Overlay";
 export { default as NavLink } from "./NavLink";
 export { default as ProgressBar } from "./ProgressBar";
-export * from "./DropZoneInput";
+export * from "./DropZone";
